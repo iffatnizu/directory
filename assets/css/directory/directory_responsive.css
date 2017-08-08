@@ -1,0 +1,49 @@
+/* 
+    Document   : directory_responsive
+    Created on : May 28, 2013, 5:33:36 PM
+    Author     : CorePiLer_LP-2
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+@media (max-width: 480px) {
+
+}
+
+@media (max-width: 767px) {
+
+}
+
+
+@media (max-width: 767px) {
+
+}
+
+@media (min-width: 768px) and (max-width: 979px) {
+
+}
+
+@media (max-width: 979px) {
+
+}
+
+@media (min-width: 980px) {
+
+}
+@media (min-width: 1200px) {
+
+}
+@media (min-width: 1280px) {
+    .container,
+    .navbar-static-top .container,
+    .navbar-fixed-top .container,
+    .navbar-fixed-bottom .container {
+        width: 1000px;
+    }
+}
+
+

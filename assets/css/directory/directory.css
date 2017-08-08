@@ -1,0 +1,1335 @@
+/* 
+    Document   : directory
+    Created on : May 28, 2013, 5:33:46 PM
+    Author     : CorePiLer_LP-2
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+html,body{
+    background: #fff;
+    font-family: "open sans",arial;
+    font-size: 11px;
+}
+@font-face {
+    font-family: 'ChunkFiveRegular';
+    src: url('fonts/Chunkfive-webfont.eot');
+    src: url('fonts/Chunkfive-webfont.eot?#iefix') format('embedded-opentype'),
+        url('fonts/Chunkfive-webfont.woff') format('woff'),
+        url('fonts/Chunkfive-webfont.ttf') format('truetype'),
+        url('fonts/Chunkfive-webfont.svg#ChunkFiveRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+a:hover, a:focus {
+    color: #005580;
+    text-decoration: none;
+}
+hr{
+    margin: 0px;
+    padding: 0px 0 8px 0;
+}
+
+header{
+    width: inherit;
+    min-height: 120px;
+}
+header #headerLogo{
+    min-height: 80px;
+    width: 1000px;
+}
+header #headerLogo .logo{
+    float: left;
+}
+header #headerLogo .logo img{
+    float: left;
+    margin: 14px 0 0 0px;
+}
+header #headerLogo .logo span.slogan{
+    float: left;
+    color: #666666;
+    font-size: 25px;
+    font-family: "ChunkFiveRegular";
+    margin: 31px 0 0 14px;
+}
+header #headerLogo .contactandsearch{
+    float: left;
+    margin-left: 154px;
+}
+header #headerLogo .contactandsearch .iconphone{
+    float: left;
+    background: url(../../images/img.png); 
+    background-position: 323px 37px;
+    width: 30px;
+    height: 30px;
+    margin: 24px 0 0 0px;
+}
+header #headerLogo .contactandsearch .contactDetails{
+    float: left;
+    margin: 18px 0 0 10px;
+    color: #999999;
+
+}
+header #headerLogo .contactandsearch .contactDetails span{
+    color: #666666;
+    font-size: 15px;
+    font-family: "ChunkFiveRegular";
+}
+header .topbox{
+    min-height: 138px;
+    width: 99px;    
+    margin-bottom: -67px;
+    position: relative;
+    float: right;
+    margin-right: 70px;
+}
+header .topbox .boxtop{
+    min-height: 125px;
+    background: #5fc8c2;
+}
+header .topbox .boxtop ul{
+    margin: 0px;
+    padding: 0px;
+}
+header .topbox .boxtop ul li{
+    float: left;
+    list-style-type: none;
+    border-bottom: 1px solid #58b9b4; 
+}
+header .topbox .boxtop ul li:last-child{
+    border-bottom: 0px;
+}
+header .topbox .boxtop ul li a{
+    float: left;
+    width: 99px;
+    line-height: 35px;
+    color: #FFF;
+    font-size: 11px;
+    text-indent: 10px;
+    font-weight: bold;
+}
+header .topbox .boxtop ul li a:hover{
+    text-decoration: none;
+}
+header #headerLogo .logingetlisted{
+    float: right;
+    margin-top: 15px;
+}
+header #headerLogo .logingetlisted .nav-pills{
+    float: left;
+    margin-right: 3px;
+    border: 1px solid #f4f4f4;
+    border-bottom-color: #DA3838;
+    margin-left: -116px;
+}
+header #headerLogo .logingetlisted .nav-pills > li > a{
+    padding-bottom: 6px;
+    padding-top: 4px;
+    font-family: arial;
+}
+header #headerLogo .logingetlisted .nav-pills a.dropdown-toggle{
+    border-radius:0px;
+}
+
+
+header #headerLogo .logingetlisted ul{
+
+}
+header #headerLogo .logingetlisted ul li{
+    float: left;
+    list-style-type: none;
+    margin-right: 2px;
+}
+header #headerLogo .logingetlisted .nav-pills li.dropdown{
+    margin-right: 0px;
+}
+header #headerLogo .logingetlisted .nav-pills .dropdown-menu > li > a{
+    width: 118px;
+    margin-left: 2px;
+}
+header #headerLogo .logingetlisted ul#usermenu li a{
+    float: left;
+    padding: 4px 6px;
+    font-family: arial;
+    font-weight: bold;
+    border: 1px solid #f4f4f4;
+    border-bottom-color: #DA3838;
+}
+header #headerLogo .logingetlisted a:hover{
+    text-decoration: none;
+}
+header .topbox .boxbottom{
+    width: 99px;
+    height: 23px;
+    background: url(../../images/img.png); 
+    background-position: 775px -3px;
+}
+header .container .navbar{
+    width: 1000px;
+}
+.menubar {
+    background-color: #c1b6ae;
+    background-image: -moz-linear-gradient(top, #baaca3, #c1b6ae);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#baaca3), to(#c1b6ae));
+    background-image: -webkit-linear-gradient(top, #baaca3, #c1b6ae);
+    background-image: -o-linear-gradient(top, #baaca3, #c1b6ae);
+    background-image: linear-gradient(to top, #baaca3, #c1b6ae);
+    background-repeat: repeat-x;
+    border: 0px;
+    border-radius: 0px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.067);
+    min-height: 40px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.menubar ul{
+    margin: 0px;
+    padding: 0px;
+}
+.menubar ul li{
+    float: left;
+    list-style-type: none;
+}
+.menubar ul li a{
+    float: left;
+    color: #fff;
+    text-shadow:0px;
+    padding: 10px 55px;
+    font-weight: bold;
+    font-family: "arial";
+    font-size:12px; 
+}
+.menubar ul li a:hover{
+    background-color: #c1b6ae;
+    background: linear-gradient(to top,#c1b6ae,#baaca3);
+    background: -webkit-gradient(linear, 0 0, 0 100%, from(#c1b6ae), to(#baaca3));
+    background: -webkit-linear-gradient(top, #c1b6ae, #baaca3);
+    background: -o-linear-gradient(top, #c1b6ae, #baaca3);
+    text-decoration: none;
+}
+#dslider{
+    float: left;
+    width: 1010px;
+    height: 370px;
+    margin-top: -20px;
+    margin-bottom: 10px;
+}
+.tab{
+    position: absolute;
+    margin-left: 70px;
+    height: 210px;
+    width: 1141px;
+    z-index: 9999;
+    margin-top: 190px;
+}
+.tabbar{
+    margin-bottom: -1px;
+    width: 1030px;
+    margin-left: 55px;
+}
+.tabbar ul{
+    margin: 0px;
+    padding: 0px 0 0 4px;
+    height: 47px;
+    background: url(../../images/tabbar_bg.png)repeat-x;
+}
+.tabbar ul li{
+    float: left;
+    margin: 0px;
+    padding: 0px;
+    list-style-type: none;
+}
+.tabbar ul li a{
+    float: left;
+    color: #fff;
+    width: 140px;
+    font-size: 14px;
+    height: 51px;
+    text-align: center;
+    line-height: 42px;
+    font-weight: bold;
+}
+.tabbar ul li a:hover{
+
+    text-decoration: none;
+}
+.tabbar ul li:hover,.tabbar ul li.active{
+    margin-top: -5px;
+    background: url(../../images/tabbar_hover_bg.png)no-repeat;
+    padding-top: 5px;
+    background-size: 140px 51px;
+}
+.tabbar ul li#ex a{
+    width: 240px;
+}
+.tabbar ul li#ex:hover{
+    background-size: 240px 51px;
+}
+
+.tabbar ul li#ex{
+    background-size: 240px 51px;
+}
+.tabbar ul li.active1{
+    margin-top: -5px;
+    background: url(../../images/tabbar_hover_bg.png)no-repeat;
+    padding-top: 5px;
+    background-size: 240px 51px;
+}
+.tabbar ul li#ex2 a{
+    width: 180px;
+}
+.tabbar ul li#ex2:hover{
+    background-size: 180px 51px;
+}
+.tabbar ul li.active2{
+    margin-top: -5px;
+    background: url(../../images/tabbar_hover_bg.png)no-repeat;
+    padding-top: 5px;
+    background-size: 180px 51px;
+}
+.taboption{
+    background: #fdfdfd;
+    height: 164px;
+    width: 1121px;
+    padding-left: 20px;
+}
+
+.taboption table{
+    float: left;
+}
+.taboption table th, .taboption table td{
+    text-align: left;
+    color: #666;
+    font-size: 14px;
+}
+.taboption span.separator{
+    float: left;
+    width: 2px;
+    height: 77px;
+    background: url(../../images/separator.png)no-repeat;
+    margin: 30px 35px 0 35px;
+}
+.taboption table input[type=text]{
+    height: 17px;
+}
+.taboption table input[type=radio]{
+    margin-top: -2px;
+}
+
+.taboption input[name=advsearch]{
+    border: 0px;
+    background: url(../../images/btn_result.png)no-repeat;
+    width: 203px;
+    height: 32px;
+    text-align: center;
+    line-height: 32px;
+    font-size: 11px;
+    color: #fff;
+    font-weight: bold;
+    margin-left: 450px;
+    margin-top:-9px;
+}
+.taboption table.info input[type=text]{
+    width: 193px;
+}
+.taboption table.info input[name=phone]{
+    width: 28px;
+}
+
+.cateringCategory{
+    position: absolute;
+    z-index: 9999;
+    background: rgba(64, 108, 165,0.9);
+    margin: -2px 0 0 63px;
+    width: 260px;
+}
+.cateringCategory ul{
+    float: left;
+    margin: 0px;
+    padding: 20px 20px 20px 20px;
+}
+.cateringCategory ul li{
+    float: left;
+    list-style-type: none;
+    border: 1px outset #406CA5;
+    padding: 4px;
+}
+.cateringCategory ul li a{
+    float: left;
+    width: 180px;
+    color: #fff;
+    text-indent: 10px;
+}
+.cateringCategory ul li a:hover{
+    text-decoration: none;
+}
+
+.cateringEvent{
+    width: 1000px;
+    height: 377px;
+    background: #f5f5f5;
+}
+.cateringEvent .catering{
+    float: left;
+    width: 550px;
+    height: 377px;
+}
+.cateringEvent .catering h3{
+    color: #003B76;
+    font-size: 20px;
+}
+.cateringEvent .catering img{
+    float: left;
+    margin: 10px;
+}
+.cateringEvent .catering p{
+    text-align: justify;
+    font-size: 11px;
+    padding-right: 15px;
+    color: #333;
+}
+.cateringEvent .events{
+    float: right;
+    width: 445px;
+    height: 377px;
+}
+.cateringEvent .events img{
+    float: left;
+    margin: 10px;
+}
+.cateringEvent .events img[alt=wed]{
+    margin-right: 10px;
+}
+.cateringEvent .events h3{
+    color: #003B76;
+    font-size: 20px;
+}
+.cateringEvent .events p{
+    text-align: justify;
+    padding-right: 15px;
+    color: #333;
+    font-size: 15px;
+    font-weight: bold;
+    margin-top: 10px;
+    float: left;
+    width: 210px;
+}
+.cateringEvent .events ul{
+    float: left;
+    margin: 25px 0 50px 0px;
+}
+.cateringEvent .events ul li{
+    list-style-type: none;
+    font-size: 12px;
+    font-weight: normal;
+}
+.cateringEvent .events ul li i{
+    color: #50711D;
+}
+.bottominfo{
+    width: 1000px;
+    height: auto;
+    background: #FCF5EF;
+    margin-top: 0px;
+    border-top: 1px solid #EBE7DE; 
+}
+.bottominfo .box{
+    padding: 10px;
+    border-bottom: 1px solid #EBE7DE; 
+    background: #f5f5f5;
+}
+.bottominfo .box h3{
+    float: left;
+    color: #003B76;
+    margin-top: 0px;
+    width: 1000px;
+    margin-bottom: 0px;
+    font-size: 20px;
+}
+.bottominfo .box p{
+    font-size: 11px;
+    text-align: justify;
+    color: #333;
+}
+.bottominfo .box p img{
+    float: left;
+    margin: 0 10px 30px 0;
+}
+.categorylist{
+    float: left;
+    width: 1000px;
+    height: auto;
+    background: #3EBCB5;
+    margin-top: 0px;
+    border-top: 1px solid #EBE7DE; 
+    background: #003B76;
+}
+.categorylist .categoryBox{
+    float: left;
+    padding: 10px;
+}
+.categorylist .categoryBox h3{
+    color: #fff;
+    font-size: 20px;
+}
+.categorylist .categoryBox ul{
+
+}
+.categorylist .categoryBox ul li{
+    list-style-type: none;
+    float: left;
+    width: 238px;
+
+}
+.categorylist .categoryBox ul li a{
+    color: #fff;
+    font-family: helvetica;
+}
+form[id=eventForm] input[type=text]
+{
+    height: 18px;
+}
+#quetoContainer{
+    border: 1px solid #BDB0A8;
+    border-radius: 5px 5px 5px 5px;
+    box-shadow: 0 0 10px #BDB0A8;
+    float: left;
+}
+footer{
+    float: left;
+    padding: 5px 0 5px 0;
+    box-shadow:0px 0px 10px #BDB0A8;
+    border: 1px solid #BDB0A8;
+    border-radius:5px;
+    font-family: arial;
+    margin-top: 20px;
+    margin-bottom: 2px;
+    text-align:center;
+    width: 1000px;
+}
+footer ul.BottomMenu{
+    float: left;
+    margin: 0px 0 0 260px;
+    padding: 0px;
+}
+footer ul.BottomMenu li{
+    float: left;
+    list-style-type: none;
+    margin-right: 1px;
+}
+footer ul.BottomMenu li a{
+    float: left;
+    padding: 5px 15px;
+}
+footer ul.BottomMenu li a:hover{
+    text-decoration: none;
+}
+#popup { 
+    display: none;
+}
+form[name=subscribe] span.ferror,form[name=subscribe] span.emerror, form[name=subscribe] span.zerror{
+    color: yellow;
+}
+/*============pages css===========*/
+.commonpages{
+    float: left;
+    padding: 20px;
+    box-shadow:0px 0px 10px #BDB0A8;
+    border: 1px solid #BDB0A8;
+    border-radius:5px;
+    font-family: verdana;
+    width: 960px;
+}
+.commonpages table{
+    width: 100%;
+}
+.commonpages table tr{
+    border: 1px solid #f5f5f5;
+    height: 70px;
+}
+.commonpages table tr td{
+    padding: 5px;
+}
+.commonpages table textarea[id=aboutEvent]{
+    width: 600px;
+    height: 100px;
+}
+.commonpages table tr td select{
+    margin-top: 5px;
+}
+.commonpages table tr td select[id=vendor]{
+    margin-top: 10px;
+}
+.commonpages table tr td input[type=checkbox]
+{
+    margin-top: 0px;
+}
+.commonpages table#searchResult{
+
+}
+.commonpages table#searchResult tr{
+    height: 20px;
+    background: #f4f4f4;
+}
+.commonpages table#searchResult tr td,.commonpages table#searchResult tr th{
+    border: 1px solid #ccc;
+}
+.commonpages table#searchResult tr th{
+    padding: 5px;
+    text-align: left;
+}
+.commonpages table textarea[id=eventscomments]{
+    width: 600px;
+    height: 120px;
+}
+.commonpages p{
+    text-align: justify;
+}
+
+.commonpages form#business-query-form{
+    float: left;
+    margin: 0 0 20px 124px;
+    width: 780px;
+}
+form[id=floristForm] table#brandtable{
+    width: auto;
+}
+form[id=floristForm] table#brandtable select,form[id=floristForm] table#brandtable input[type=text]{
+    width: 100px;
+}
+
+.commonpages .form-a fieldset {
+    display: block;
+    border: none;
+    margin: 0 0 22px 0;
+    padding: 0;
+}
+.commonpages .form-a .fdset-a {
+    margin-bottom: 35px;
+}
+.commonpages .form-a .fgroup-a {
+    width: 100%;
+    padding-top: 9px;
+}
+.commonpages .form-a .fgroup-a:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+.commonpages .form-a .field-a {
+    position: relative;
+    float: left;
+    width: 343px;
+}
+.commonpages .form-a .fl-a {
+    float: right;
+}
+.commonpages .form-a .fl-b {
+    width: 100%;
+}
+.commonpages .form-a .field-a label {
+    display: block;
+    padding-bottom: 9px;
+    color: #172934;
+    font: normal 1em/1.2 Segoe UI Semibold, Helvetica Neue, Helvetica, Arial, sans-serif;
+}
+.commonpages .form-a .error label.error {
+    float: right;
+    padding: 5px 3px 5px 18px;
+    color: #fd713a;
+    font: normal 0.85em/1.2 Segoe UI, Helvetica Neue, Helvetica, Arial, sans-serif;
+}
+.commonpages .form-a .field-a input {
+    display: block;
+    width: 290px;
+    color: #3c525f;
+    line-height: 1.2;
+}
+.commonpages .ie .form-a .field-a input {
+    padding-top: 8px;
+}
+
+.commonpages .form-a .field-a .focus-wrapper {
+    display: block;
+    position: relative;
+    float: left;
+}
+.commonpages .form-a .field-a .focus-helper {
+    position: absolute;
+    right: -13px;
+    top: 0;
+    display: block;
+    overflow: hidden;
+    width: 14px;
+    height: 34px;
+    text-indent: -10001px;
+}
+.commonpages .form-a .field-a select {
+    display: block;
+    width: 342px;
+    padding: 6px 4px 6px 4px;
+    border: 1px solid #dbdbdb;
+    color: #3c525f;
+    line-height: 1.2;
+}
+.commonpages .form-a .field-a select:focus {
+    background-color: #fffff7;
+}
+.commonpages .form-a .field-a textarea {
+    display: block;
+    width: 760px;
+    height: 182px;
+    color: #3c525f;
+}
+.commonpages .form-a .fgroup-a {
+    width: 100%;
+    padding-top: 7px;
+}
+.commonpages .form-a .field-d-wrapper {
+    overflow: hidden;
+    width: 718px;
+    display: none;
+}
+.commonpages .form-a .field-d {
+    padding: 6px 7px;
+    position: relative;
+    color: #364c59;
+    border: 1px solid #e8eef1;
+    font-size: 1.2em;
+}
+.commonpages .form-a .field-d label {
+    display: none;
+}
+.commonpages .form-a .field-d .close {
+    position: absolute;
+    top: 50%;
+    right: 6px;
+    display: block;
+    overflow: hidden;
+    margin-top: -10px;
+    width: 20px;
+    height: 21px;
+    text-indent: -10001px;
+    cursor: pointer;
+}
+.commonpages .form-a h3 {
+    font-weight: normal;
+    font-size: 1.4em;
+}
+.commonpages .form-a .fgroup-b {
+    padding: 4px 0 12px 0;
+}
+.commonpages .form-a a {
+    color: #5f8195;
+    text-decoration: none;
+}
+.commonpages .form-a a:hover {
+    color: #172934;
+    text-decoration: none;
+}
+.commonpages .form-a small.error{
+    color: red;
+}
+.commonpages .cateringQuetos{
+    float: left;
+    border: 2px solid #ddd;
+    margin-left: 30px;
+    margin-top: 15px;
+    padding: 10px 20px;
+}
+.commonpages .cateringQuetos ul{
+    margin: 0px;
+    padding: 0px;
+}
+.commonpages .cateringQuetos ul li{
+    list-style-type: none;
+}
+.commonpages .cateringQuetos h3{
+    text-align: center;
+}
+.commonpages .cateringDetails{
+    float: left;
+    border: 2px solid #ddd;
+    margin-left: 28px;
+    margin-top: 15px;
+    padding: 10px 20px;
+    width: 550px;
+}
+.commonpages .cateringDetails #reviewarea p a i{
+    color: #B3B3B3;
+    font-size: 20px;
+}
+.commonpages .cateringDetails #reviewarea p a:hover{
+    text-decoration: none;
+}
+.commonpages .cateringDetails #reviewarea p a i:hover{
+    color: #EC9104;
+}
+.commonpages .cateringDetails #reviewarea p a i.ractive{
+    color: #EC9104;
+}
+.commonpages .getListed ul li{
+    list-style-type: none;
+}
+.commonpages .signincontainer{
+    float: left;
+    width: 300px;
+}
+.commonpages .signincontainer table tr{
+    height: auto;
+    border: none;
+}
+.commonpages .signincontainer table tr td{
+    padding: 0px;
+}
+.commonpages #faqs h5{
+    cursor: pointer;
+
+}
+.commonpages #faqs h5.active{
+    color: #D74646;
+}
+.commonpages .chpcontainer{
+    float: left;
+    width: 500px;
+}
+.commonpages .chpcontainer input[type=password]
+{
+    float: left;
+    width: 260px;
+    margin-right: 15px;
+}
+.commonpages .chpcontainer span{
+    float: left;
+    color: red;
+}
+.commonpages form#vendor-registration table tr td p{
+    color: red;
+}
+
+#boxes{
+    display: none;
+    position: fixed;
+    background: rgba(255,255,255,0.7);
+    width:100%;
+    height: 100%;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 99999;
+}
+
+#boxes .window{
+    margin: 0 auto;
+    width: 600px;
+    height: 480px;
+    background: #003B76;
+    padding: 25px;
+    margin-top: 25px;
+    color: #fff;
+
+}
+#boxes .window ul.weekly-left-panel{
+    margin: 0px;
+}
+#boxes .window .close_button a{
+    float: right;
+}
+
+.commonpages #vdleftContent {
+    float: left;
+    margin: 0;
+    padding: 0;
+    width: 299px;
+}
+.commonpages #vdleftContent h3{
+    color: #F47900;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 28px;
+    font-weight: bold;
+    padding: 0 0 5px 30px;
+}
+.commonpages #vdleftContent ul {
+    background: url("../images/innerimages/left-bg.jpg") no-repeat scroll center top transparent;
+    float: left;
+    list-style: none outside none;
+    margin: 0;
+    padding: 0;
+    width: 299px;
+}
+.commonpages #vdleftContent ul li {
+    float: left;
+    list-style: none outside none;
+    margin: 0;
+    padding: 0;
+    width: 299px;
+}
+.commonpages #vdleftContent ul li.lft_cont_txt {
+    color: #676767;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 20px;
+    font-weight: normal;
+    padding: 20px 0 0 30px;
+}
+.commonpages #vdleftContent ul li.sponsored_vendor_tbl {
+    border: 1px solid #000000;
+    float: left;
+    list-style: none outside none;
+    margin: 20px 19px 0 20px;
+    padding: 15px 10px 20px;
+    width: 238px;
+}
+.commonpages #vdleftContent ul li span {
+    float: left;
+    padding-bottom: 10px;
+    width: 238px;
+}
+
+.commonpages #vdrightContent {
+    float: left;
+    margin: 0 0 0 26px;
+    padding: 0;
+}
+.commonpages #vdrightContent h3 {
+    color: #F47900;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 28px;
+    font-weight: bold;
+    padding: 0 0 5px 30px;
+}
+.commonpages #vdrightContent ul {
+    float: left;
+    list-style: none outside none;
+    margin: 0;
+    padding: 0 0 0 30px;
+    width: 300px;
+}
+.commonpages #vdrightContent ul li {
+    float: left;
+    list-style: none outside none;
+    margin: 0;
+    padding: 0;
+}
+
+.commonpages #vdrightContent img{
+    float: left;
+    margin-top:0px;
+    margin-left: 150px;
+}
+.commonpages #vdrightContent .map{
+    display:block; 
+    width:560px; 
+    height:522px; 
+    background:url(../../images/locationmapaust.jpg); 
+    position:relative; 
+    float: left;
+}
+.commonpages #vdrightContent .map a:hover{
+    border: 1px dotted #000;
+}
+.commonpages #vdrightContent .map a.wa {
+    left: 74px;
+    top: 188px;
+    background: transparent;
+    display: block;
+    width: 138px;
+    height: 0;
+    padding-top: 117px;
+    overflow: hidden;
+    position: absolute;
+}
+.commonpages #vdrightContent .map a.nt {
+    left: 231px;
+    top: 112px;
+    background: transparent;
+    display: block;
+    width: 98px;
+    height: 0;
+    padding-top: 117px;
+    overflow: hidden;
+    position: absolute;
+}
+.commonpages #vdrightContent .map a.ql {
+    left: 380px;
+    top: 166px;
+    background: transparent;
+    display: block;
+    width: 84px;
+    height: 0;
+    padding-top: 121px;
+    overflow: hidden;
+    position: absolute;
+}
+.commonpages #vdrightContent .map a.nsw {
+    left: 373px;
+    top: 294px;
+    background: transparent;
+    display: block;
+    width: 71px;
+    height: 0;
+    padding-top: 62px;
+    overflow: hidden;
+    position: absolute;
+}
+.commonpages #vdrightContent .map a.sa {
+    left: 237px;
+    top: 256px;
+    background: transparent;
+    display: block;
+    width: 120px;
+    height: 0;
+    padding-top: 62px;
+    overflow: hidden;
+    position: absolute;
+}
+.commonpages #vdrightContent .map a.ts {
+    left: 332px;
+    top: 460px;
+    background: transparent;
+    display: block;
+    width: 119px;
+    height: 0;
+    padding-top: 50px;
+    overflow: hidden;
+    position: absolute;
+}
+.commonpages #vdrightContent .map a.vc {
+    left: 396px;
+    top: 413px;
+    background: transparent;
+    display: block;
+    width: 120px;
+    height: 0;
+    padding-top: 41px;
+    overflow: hidden;
+    position: absolute;
+}
+.commonpages #vdrightContent .map a.act {
+    left: 445px;
+    top: 346px;
+    background: transparent;
+    display: block;
+    width: 84px;
+    height: 0;
+    padding-top: 54px;
+    overflow: hidden;
+    position: absolute;
+}
+
+.commonpages ul.eventsList{
+    margin: 0px;
+    padding: 0px;
+}
+.commonpages ul.eventsList li{
+    list-style-type: none;
+    border-top: 1px solid #ccc;
+}
+.commonpages #serviseNserviceList ul li{
+
+    float: left;
+    width: 980px;
+
+}
+.commonpages #serviseNserviceList a.bookmark{
+    float: right;
+    margin-top: 20px;
+}
+.commonpages .msgTitleBox{
+    float: left;
+    width: 300px;
+    height: 500px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+}
+.commonpages .msgTitleBox ul{
+    margin: 0px;
+    padding: 0px;
+}
+.commonpages .msgTitleBox ul li{
+    float: left;
+    margin: 0px;
+    padding: 0px;
+    list-style-type: none;
+    background: #F7F7F7;
+    border-bottom: 1px solid #ddd;
+}
+.commonpages .msgTitleBox ul li i{
+    float: left;
+    font-size: 30px;
+    color: #000;
+    margin-top: 4px;
+}
+
+.commonpages .msgTitleBox ul li a{
+    float: left;
+    width: 294px;
+    padding: 3px;
+}
+.commonpages .msgTitleBox ul li a:hover{
+    text-decoration: none;
+}
+.commonpages .msgTitleBox ul li:hover{
+    background: #DBEAF9;
+}
+.commonpages .msgTitleBox ul li a h6,p,small{
+    margin: 0px;
+    padding: 0px;
+}
+.commonpages .msgTitleBox ul li a h6{
+    color: #DD4B39;
+}
+.commonpages .msgTitleBox ul li a p{
+    color: #49AFCD;
+}
+.commonpages .msgTitleBox ul li a p small{
+    float: right;
+    line-height: normal;
+    margin-top: 0px;
+    text-align: right;
+}
+
+.commonpages .msgDeatilsBox{
+    float: left;
+    width: 640px;
+    min-height: 500px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+    margin-left: 10px;
+}
+.commonpages .msgDeatilsBox #reportArea a{
+    float: right;
+    color: #E34B39;
+    font-size: 12px;
+    margin: 10px 10px 0 0px;
+    text-align: center;
+    border: 1px solid #EEEEEE;
+    padding: 3px;
+    border-radius:5px;
+    line-height: normal;
+}
+.commonpages .msgDeatilsBox #reportArea a:hover{
+    text-decoration: none;
+    border: 1px solid #4FBBEE;
+}
+.commonpages .msgDeatilsBox ul{
+    margin: 0px;
+    padding: 0px;
+}
+.commonpages .msgDeatilsBox ul li{
+    float: left;
+    margin: 3px;
+    padding: 7px;
+    list-style-type: none;
+    border: 1px solid #eee;
+    border-radius:5px;
+    max-width: 550px;
+}
+
+.commonpages .msgDeatilsBox ul li h6{
+    margin: 0px;
+    padding: 0px;
+}
+.commonpages .msgDeatilsBox ul li.displayleft{
+    text-align: left;
+}
+.commonpages .msgDeatilsBox ul li.displayright{
+    text-align: right;
+    float: right;
+}
+.commonpages .msgDeatilsBox ul li.displayleft h6{
+    color: green;
+}
+.commonpages .msgDeatilsBox ul li.displayright h6{
+    color: #DD4B39;
+}
+.commonpages .msgDeatilsBox .sendarea{
+    margin:10px;
+    float: left;
+    display: none;
+}
+.commonpages .msgDeatilsBox .sendarea #pageContent{
+    float: left;
+    border: 1px solid #ccc;
+    margin-top: 2px;
+    border-radius:4px;
+    font-size: 13px;
+    line-height: normal;
+    overflow: auto;   
+    width: 610px;
+    height:90px;
+    margin-bottom:10px;
+    padding: 4px;
+}
+.commonpages .msgDeatilsBox ul#formateText li{
+    border: none;
+    padding: 0px;
+    margin: 0px;
+}
+.commonpages form#searchSelect input[type=radio]{
+    float: left;
+}
+.commonpages  ul.choosingSearch{
+    float: left;
+    margin: 48px 0 50px 300px;
+}
+.commonpages  ul.choosingSearch li{
+    float: left;
+    list-style-type: none;
+    width: 165px;
+    text-align: center;
+    padding: 15px;
+    margin-right: 12px;
+    border: 1px solid #BDB0A8;
+    border-radius: 5px 5px 5px 5px;
+    box-shadow: 0 0 10px #BDB0A8;
+}
+.commonpages  ul.choosingSearch li img{
+    width: 155px;
+    height: 180px;
+}
+.commonpages  ul.choosingSearch li a{
+    color: #333333;
+
+}
+.commonpages  ul.choosingSearch li a:hover{
+    color: #5FC8C2;
+    text-decoration: none;
+
+}
+.commonpages  ul.choosingSearch li:hover{
+    box-shadow: 0 0 10px #ddd;
+}
+.commonpages span.drate{
+    float: left;width: 20px;text-align: center;border: 1px solid #ccc;margin-right: 2px;height: 35px
+}
+.commonpages .quetoArea{
+    float: left; 
+    width: 700px;
+    margin-top: -62px;
+}
+.commonpages .quetoArea .removeEve{
+    float: right;
+    margin: 20px -15px 0 -22px;
+    cursor: pointer;
+}
+table#reviewTbl span.label { 
+    display: block; 
+}
+table#reviewTbl input[type=radio] { 
+    margin-top: -1px;
+    margin-left: 5px;
+}
+
+/*  styles for the unit rater
+---------------------------------------------------------
+--------------------------------------------------------- */
+#unit_long{
+    font-size: 11px;
+}
+.ratingblock {
+    display:block;
+    border-bottom:1px solid #999;
+    padding-bottom:8px;
+    margin-bottom:8px;
+}
+
+.loading {
+    height: 30px;
+    background: url('../images/working.gif') 50% 50% no-repeat;
+}
+
+.unit-rating { /* the UL */
+    list-style:none;
+    margin: 0px;
+    padding:0px;
+    height: 30px;
+    position: relative;
+    background: url('../../images/starrating.png') top left repeat-x;		
+}
+
+.unit-rating li{
+    text-indent: -90000px;
+    padding:0px;
+    margin:0px;
+    /*\*/
+    float: left;
+    /* */
+}
+
+.unit-rating li a {
+    outline: none;
+    display:block;
+    width:30px;
+    height: 30px;
+    text-decoration: none;
+    text-indent: -9000px;
+    z-index: 20;
+    position: absolute;
+    padding: 0px;
+}
+
+.unit-rating li a:hover{
+    background: url('../../images/starrating.png') left center;
+    z-index: 2;
+    left: 0px;
+}
+
+.unit-rating a.r1-unit{left: 0px;}
+.unit-rating a.r1-unit:hover{width:30px;}
+.unit-rating a.r2-unit{left:30px;}
+.unit-rating a.r2-unit:hover{width: 60px;}
+.unit-rating a.r3-unit{left: 60px;}
+.unit-rating a.r3-unit:hover{width: 90px;}
+.unit-rating a.r4-unit{left: 90px;}	
+.unit-rating a.r4-unit:hover{width: 120px;}
+.unit-rating a.r5-unit{left: 120px;}
+.unit-rating a.r5-unit:hover{width: 150px;}
+.unit-rating a.r6-unit{left: 150px;}
+.unit-rating a.r6-unit:hover{width: 180px;}
+.unit-rating a.r7-unit{left: 180px;}
+.unit-rating a.r7-unit:hover{width: 210px;}
+.unit-rating a.r8-unit{left: 210px;}
+.unit-rating a.r8-unit:hover{width: 240px;}
+.unit-rating a.r9-unit{left: 240px;}
+.unit-rating a.r9-unit:hover{width: 270px;}
+.unit-rating a.r10-unit{left: 270px;}
+.unit-rating a.r10-unit:hover{width: 300px;}
+
+.unit-rating li.current-rating {
+    background: url('../../images/starrating.png') left bottom;
+    position: absolute;
+    height: 28px;
+    display: block;
+    text-indent: -9000px;
+    z-index: 1;
+}
+
+.voted {color:#999;}
+.thanks {color:#36AA3D;}
+.static {color:#5D3126;}
+
+.stateList{
+    float: left;
+    margin-top: 15px;
+    width: 100%;
+}
+.stateList h3 {
+    color: #003B76;
+    float: left;
+    margin-top: 0;
+    width: 1000px;
+}
+span.required{
+    float: left;
+    color: red;
+    font-weight: bold;
+}
