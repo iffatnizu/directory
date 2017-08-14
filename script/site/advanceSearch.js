@@ -4,10 +4,10 @@ var directory = {
     {
         var service = $("input[name=category]:checked").val();
         
-        if(service!=undefined){
+        if(service!==undefined){
             
             var val = [];
-            $('input[name=category]:checked').each(function(i){
+            $("input[name=category]:checked").each(function(i){
                 val[i] = $(this).val();
             });
         
@@ -17,5 +17,5 @@ var directory = {
             alert("Please select at least one service");
         }
     }
-}
+};
 

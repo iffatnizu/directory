@@ -1,7 +1,12 @@
 <?php
-
-if (!defined('BASEPATH'))
+/*
+ * User class
+ * Functions list - index, signup, checkEmail, subscribe, login, logout, favorite, index, getMessages, sendUserReply, editProfile, 
+ *                 changePassword, checkOldPassword, reportViolation, manageRating, updateVendorRatingReview
+ */
+if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
+}
 
 require_once 'siteConfig.php';
 require_once 'dbConfig.php';
@@ -15,7 +20,11 @@ class User extends CI_Controller {
         $this->load->model('model_user');
         $this->load->helper('user');
     }
-
+/*
+ *  Index function of User class
+ *  Signup function default load
+ *  No return
+ */
     public function index() {
         $this->signup();
     }
@@ -31,7 +40,6 @@ class User extends CI_Controller {
             $this->form_validation->set_rules('whichBest[]', 'Which Best', 'required');
 
             if ($this->form_validation->run() == TRUE) {
-//            debugPrint($_POST);
                 $this->model_user->userSignup();
             }
 
@@ -137,7 +145,6 @@ class User extends CI_Controller {
             if (isset($_GET['submit'])) {
                 $msg = $this->model_user->getMessages($this->session->userdata('userId'), cpr_decode($_GET['eid']));
                 echo json_encode($msg);
-                //echo "";
             } else {
                 print("Nice try");
             }
@@ -164,7 +171,6 @@ class User extends CI_Controller {
                 $this->model_user->updateProfile($this->session->userdata('userId'));
             }
             $data['userInfo'] = $this->model_user->getUserInfo($this->session->userdata('userId'));
-//            $data['allCity'] = getAllCity();
             $data['allState'] = getAllState();
 
             $data['title'] = 'Edit User Profile';

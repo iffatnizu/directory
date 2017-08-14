@@ -4,14 +4,15 @@ require_once 'siteConfig.php';
 require_once 'dbConfig.php';
 require_once APPPATH . 'directory/adminconfig.php';
 
-if (!defined('BASEPATH'))
+if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
+}
 
 class Administrator extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
-        $this->load->helper(array('url', 'site', 'user', 'cookie', 'form', 'url','events'));
+        $this->load->helper(array('url', 'site', 'user', 'cookie', 'form', 'url', 'events'));
         $this->load->library(array('session', 'imageresizer'));
         $this->load->model('model_administrator');
     }
@@ -129,7 +130,7 @@ class Administrator extends CI_Controller {
         }
     }
 
-    public function deletefaq($id=0) {
+    public function deletefaq($id = 0) {
         if ($this->session->userdata('_directoryAdminLogin')) {
             $d = $this->model_administrator->deletefaq($id);
             redirect(Adminconfig::CONTROLLER_ADMINISTRATOR . Adminconfig::METHOD_ADMINISTRATOR_FAQ);
@@ -200,7 +201,7 @@ class Administrator extends CI_Controller {
         }
     }
 
-    public function lists($name="") {
+    public function lists($name = "") {
         if ($this->session->userdata('_directoryAdminLogin')) {
 
 
@@ -283,27 +284,28 @@ class Administrator extends CI_Controller {
             echo "Session Expired";
         }
     }
-    
+
     public function deleteRatingReview() {
         if ($this->session->userdata('_directoryAdminLogin')) {
             if (isset($_POST['submit'])) {
-               echo $this->model_administrator->deleteRatingReview();                
-            }
-        } else {
-            echo "Session Expired";
-        }
-    }
-    public function reportMarkAsInvalid() {
-        if ($this->session->userdata('_directoryAdminLogin')) {
-            if (isset($_POST['submit'])) {
-               echo $this->model_administrator->reportMarkAsInvalid();                
+                echo $this->model_administrator->deleteRatingReview();
             }
         } else {
             echo "Session Expired";
         }
     }
 
-    public function reportViolationList($name="") {
+    public function reportMarkAsInvalid() {
+        if ($this->session->userdata('_directoryAdminLogin')) {
+            if (isset($_POST['submit'])) {
+                echo $this->model_administrator->reportMarkAsInvalid();
+            }
+        } else {
+            echo "Session Expired";
+        }
+    }
+
+    public function reportViolationList($name = "") {
         if ($this->session->userdata('_directoryAdminLogin')) {
 
             $data['title'] = "";
@@ -316,10 +318,7 @@ class Administrator extends CI_Controller {
                     $data['title'] = 'Reported User List || Directory Admin';
                     $data['userList'] = $this->model_administrator->getReportedUserList();
                     $admin['content'] = $this->load->view(Adminconfig::VIEW_ADMIN_COMP_REPORTED_USER_LIST, $data, TRUE);
-                }
-                
-                else if($name=="ratingReview")
-                {
+                } else if ($name == "ratingReview") {
                     $data['title'] = 'Reported Rating List || Directory Admin';
                     $data['reportedRatings'] = $this->model_administrator->getReportedRatingList();
                     $admin['content'] = $this->load->view(Adminconfig::VIEW_ADMIN_COMP_REPORTED_RATING_LIST, $data, TRUE);
@@ -333,18 +332,13 @@ class Administrator extends CI_Controller {
             redirect(site_url(Adminconfig::CONTROLLER_ADMINISTRATOR . Adminconfig::METHOD_ADMINISTRATOR_LOGIN));
         }
     }
-    
-    public function setVendorLogo()
-    {
+
+    public function setVendorLogo() {
         if ($this->session->userdata('_directoryAdminLogin')) {
-            if(isset($_POST['Change-Image']))
-            {
-                if($_FILES['userfile']['name']==true)
-                {
+            if (isset($_POST['Change-Image'])) {
+                if ($_FILES['userfile']['name'] == true) {
                     $this->model_administrator->setVendorLogo();
-                }
-                else
-                {
+                } else {
                     $s['uploaderror'] = true;
                     $this->session->set_userdata($s);
                 }

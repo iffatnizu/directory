@@ -4,7 +4,7 @@ var directory = {
         var newpass = form.find("input[name=newpassword]").val();
         var connewpass = form.find("input[name=connewpassword]").val();
         var error = 0;
-        if(oldpass=="")
+        if(oldpass==="")
         {
             $("span[class=eop]").html("Enter old passowrd"); 
             error = 1;
@@ -13,7 +13,7 @@ var directory = {
             $("span[class=eop]").html(""); 
         }
         
-        if(newpass=="")
+        if(newpass==="")
         {
             $("span[class=enp]").html("Enter new passowrd"); 
             error = 1;
@@ -22,7 +22,7 @@ var directory = {
             $("span[class=enp]").html(""); 
         }
         
-        if(connewpass=="")
+        if(connewpass==="")
         {
             $("span[class=ecnp]").html("Confirm new passowrd"); 
             error = 1;
@@ -39,7 +39,7 @@ var directory = {
             $("span[class=ecnp]").html(""); 
         }
         
-        if(error==0)
+        if(error===0)
         {
             $(".chpstatus").html("Verifying credential....");
            
@@ -63,15 +63,15 @@ var directory = {
                     setTimeout(function(){
                         $(".chpstatus").html("");  
                         $("span[class=eop]").html(""); 
-                    },3000)
+                    },3000);
                 }
-            })
+            });
         }
         return false;
     }
-}
+};
 $(document).ready(function(){
     $("form[class=form-change-pass]").submit(function(){
         return directory.changepassword($(this));
-    })  
-})
+    });
+});

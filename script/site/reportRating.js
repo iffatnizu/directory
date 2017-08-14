@@ -8,7 +8,7 @@ var directory = {
     sendReportForRating:function(id)
     {
         var reason = $("textarea[name=reportReason_"+id+"]").val();
-        if(reason!=""){
+        if(reason!==""){
             $.ajax({
                 type:"POST",
                 data:{
@@ -31,8 +31,8 @@ var directory = {
                         alert('Something went wrong.try again');
                     }
                 }
-            })
+            });
         }
     }
-}
+};
 

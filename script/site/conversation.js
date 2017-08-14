@@ -9,7 +9,7 @@ var directory = {
     {
         $(".msgTitleBox ul li").css({
             "background":"#F7F7F7"
-        })
+        });
         $("li[id=pmid_"+id+"]").css({
             "background":"#DBEAF9"
         });
@@ -23,14 +23,14 @@ var directory = {
             },
             success:function(res)
             {
-                if(res!=""){
+                if(res!==""){
                     $("div[id=reportArea]").html('<a onclick="directory.vendorReportViolation(\''+id+'\',\'user\')" href="javascript:;"><i class="icon-minus-sign"></i><br/>Report</a>');
                     $("div[class=sendarea]").show();
                     var obj = $.parseJSON(res);
                     $.each(obj,function(index,value){
                         var tag = '<li id="" class="'+value.cssclass+'"><h6><i class="icon-user"></i> '+value.username+' Says :</h6><p>'+value.messageDescription+'</p></li><br clear="all"/>';
                         $("ul[id=msgList]").append(tag);
-                    })
+                    });
                 
                     var sendarea = '<div contenteditable="true" id="pageContent" class="sendReply_'+id+'"></div><br clear="all"/><input onclick="directory.sendReply(\''+id+'\')" type="button" class="btn btn-info" name="sendMsg" value="Send"/>';
                 
@@ -40,14 +40,14 @@ var directory = {
                     loadId = id;
                 }
             }
-        })
+        });
 
     },
     getUserMessageById:function(id)
     {
         $(".msgTitleBox ul li").css({
             "background":"#F7F7F7"
-        })
+        });
         $("li[id=pmid_"+id+"]").css({
             "background":"#DBEAF9"
         });
@@ -61,7 +61,7 @@ var directory = {
             },
             success:function(res)
             {
-                if(res!=""){
+                if(res!==""){
                     
                     $("div[id=reportArea]").html('<a onclick="directory.userReportViolation(\''+id+'\',\'vendor\')" href="javascript:;"><i class="icon-minus-sign"></i><br/>Report</a>');
                     $("div[class=sendarea]").show();
@@ -69,7 +69,7 @@ var directory = {
                     $.each(obj,function(index,value){
                         var tag = '<li id="" class="'+value.cssclass+'"><h6><i class="icon-user"></i> '+value.username+' Says :</h6><p>'+value.messageDescription+'</p></li><br clear="all"/>';
                         $("ul[id=msgList]").append(tag);
-                    })
+                    });
                 
                     var sendarea = '<div contenteditable="true" id="pageContent" class="sendReply_'+id+'"></div><br clear="all"/><input onclick="directory.sendUserReply(\''+id+'\')" type="button" class="btn btn-info" name="sendMsg" value="Send"/>';
                 
@@ -79,7 +79,7 @@ var directory = {
                     userLoadId = id;
                 }
             }
-        })
+        });
 
     },
     intervalForLoadMessage:function()
@@ -93,17 +93,17 @@ var directory = {
             },
             success:function(res)
             {               
-                if(res!=""){
+                if(res!==""){
                     $("ul[id=msgList]").html("");
                     var obj = $.parseJSON(res);
                     $.each(obj,function(index,value){
                         var tag = '<li id="" class="'+value.cssclass+'"><h6><i class="icon-user"></i> '+value.username+' Says :</h6><p>'+value.messageDescription+'</p></li><br clear="all"/>';
                         $("ul[id=msgList]").append(tag);
-                    })
+                    });
 
                 }
             }
-        })
+        });
 
     },
     intervalForLoadUserMessage:function()
@@ -117,16 +117,16 @@ var directory = {
             },
             success:function(res)
             {
-                if(res!=""){
+                if(res!==""){
                     $("ul[id=msgList]").html("");
                     var obj = $.parseJSON(res);
                     $.each(obj,function(index,value){
                         var tag = '<li id="" class="'+value.cssclass+'"><h6><i class="icon-user"></i> '+value.username+' Says :</h6><p>'+value.messageDescription+'</p></li><br clear="all"/>';
                         $("ul[id=msgList]").append(tag);
-                    })
+                    });
                 }
             }
-        })
+        });
 
     },
     forceLoadMessage:function()
@@ -136,11 +136,11 @@ var directory = {
     sendReply:function(eid)
     {
         var replyMsg = $("div[class=sendReply_"+eid+"]").html();
-        if(replyMsg=="")
+        if(replyMsg==="")
         {
             $("div[class=sendReply_"+eid+"]").css({
                 "border-color":"red"
-            })      
+            });      
         }
         else{
             $.ajax({
@@ -157,17 +157,17 @@ var directory = {
                     $("ul[id=msgList]").append(tag);
                     $("div[class=sendReply_"+eid+"]").html("");
                 }
-            })
+            });
         }
     },
     sendUserReply:function(eid)
     {
         var replyMsg = $("div[class=sendReply_"+eid+"]").html();
-        if(replyMsg=="")
+        if(replyMsg==="")
         {
             $("div[class=sendReply_"+eid+"]").css({
                 "border-color":"red"
-            })      
+            });      
         }
         else{
             $.ajax({
@@ -184,18 +184,18 @@ var directory = {
                     $("ul[id=msgList]").append(tag);
                     $("div[class=sendReply_"+eid+"]").html("");
                 }
-            })
+            });
         }
     }
-}
+};
 $(document).ready(function(){   
     directory.forceLoadMessage();
     
     setInterval(function(){
-        if(isClick==true)
+        if(isClick===true)
         {
             directory.intervalForLoadMessage();    
         }
-    },7000)
-})
+    },7000);
+});
 

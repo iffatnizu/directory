@@ -15,9 +15,9 @@ var directory = {
                 var object = $.parseJSON(res);
                 $.each(object,function(i,v){
                     $("select[name=cityId]").append('<option value="'+v.cityId+'">'+v.cityName+'</option>');
-                })
+                });
             }
-        })
+        });
     }
-}
+};
 

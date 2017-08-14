@@ -14,7 +14,7 @@ var directory = {
         var email = form.find("input[name=txtEmail]").val();
         var zip = form.find("input[name=txtZipCode]").val();
         var error = 0;
-        if(name=="")
+        if(name==="")
         {
             $("span[class=ferror]").html("Enter your name"); 
             error=1;
@@ -24,7 +24,7 @@ var directory = {
         }
         var emailpat=/^[a-zA-Z0-9_\.\-]+@[a-zA-Z0-9\-]+\.[a-zA-Z0-9\-\.]+$/;
         var matcharray= email.match(emailpat);
-        if(matcharray==null)
+        if(matcharray===null)
         {
             $("span[class=emerror]").html("Enter your valid email"); 
             error=1;
@@ -32,7 +32,7 @@ var directory = {
         else{
             $("span[class=emerror]").html(""); 
         }
-        if(zip=="")
+        if(zip==="")
         {
             $("span[class=zerror]").html("Enter your zip"); 
             error=1;
@@ -40,7 +40,7 @@ var directory = {
         else{
             $("span[class=zerror]").html(""); 
         }
-        if(error==0){
+        if(error===0){
             $.ajax({
                 type:"POST",
                 url:base_url+subscribeUrl,
@@ -56,15 +56,15 @@ var directory = {
                         form.find("input[name=txtZipCode]").val("");   
                     }
                 }
-            })
+            });
         }
        
         return false;
     }
-}
+};
 
 $(document).ready(function(){
     $("form[name=subscribe]").submit(function(){
         return directory.sendSubscribeFormData($(this));
-    })
-})
+    });
+});

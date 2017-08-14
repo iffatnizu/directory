@@ -22,15 +22,15 @@ var directory = {
                     
                     setTimeout(function(){
                         location.reload();
-                    },2000)
+                    },2000);
                 }
             }
-        })
+        });
         return false;
     }
-}
+};
 $(document).ready(function(){
     $("form[class=form-signin]").submit(function(){
         return directory.doLogin($(this));
-    })
-})
+    });
+});

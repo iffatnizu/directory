@@ -7,7 +7,7 @@ var directory = {
           
         //alert(review);  
           
-        if(review!="" && rating!=undefined){ 
+        if(review!=="" && rating!==undefined){ 
             var ans = confirm('Are you sure want to update this');
             if(ans) {
            
@@ -33,8 +33,8 @@ var directory = {
                             alert('Something went wrong.try again');
                         }
                     }
-                })
+                });
             }
         }
     }
-}
+};

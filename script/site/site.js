@@ -11,7 +11,6 @@ var directory = {
             url: base_url + "vendor/doLogin",
             data: form.serialize() + "&signin=1",
             success: function (res) {
-                //alert(res);
                 if (res === "0") {
                     $(".loginstatus").html("Incorrect usernname and password");
                 } else if (res === "2") {
