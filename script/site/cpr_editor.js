@@ -1,8 +1,19 @@
+/**
+ * Description
+ * @method changeStyle
+ * @param {} param
+ * @return Literal
+ */
 function changeStyle(param){
     document.execCommand(param, false, null);
     $('#pageContent').focus();
     return false;
 }
+/**
+ * Description
+ * @method changeFontColor
+ * @return 
+ */
 function changeFontColor(){
     var name=prompt("Please Color Name","");
     if (name!=null){
@@ -11,6 +22,11 @@ function changeFontColor(){
         return false;
     }
 }
+/**
+ * Description
+ * @method changeLink
+ * @return 
+ */
 function changeLink(){
     var link=prompt("Please Insert Link","");
     if (link!=null){

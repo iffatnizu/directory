@@ -9,6 +9,12 @@ class Model_Vendor extends CI_Model {
         parent::__construct();
     }
 
+    /**
+     * @method name User's Sign Up
+     * @param none 
+     * Description  
+     * @return None 
+     */
     public function getUserListByCity() {
         $cityId = $_GET[DBConfig::TABLE_VENDOR_ATT_VENDOR_CITY_ID];
         $sql = 'SELECT '
@@ -20,7 +26,6 @@ class Model_Vendor extends CI_Model {
                 . ' LEFT JOIN ' . DBConfig::TABLE_CITY . ' ON ' . DBConfig::TABLE_CITY . '.' . DBConfig::TABLE_CITY_ATT_CITY_ID . ' = ' . DBConfig::TABLE_VENDOR . '.' . DBConfig::TABLE_VENDOR_ATT_VENDOR_CITY_ID
                 . ' LEFT JOIN ' . DBConfig::TABLE_STATE . ' ON ' . DBConfig::TABLE_STATE . '.' . DBConfig::TABLE_STATE_ATT_STATE_ID . ' = ' . DBConfig::TABLE_CITY . '.' . DBConfig::TABLE_CITY_ATT_STATE_ID
                 . ' WHERE ' . DBConfig::TABLE_VENDOR . '.' . DBConfig::TABLE_VENDOR_ATT_VENDOR_CITY_ID . ' = "' . $cityId . '"';
-        //echo $sql;
         $query = $this->db->query($sql);
         if ($query->num_rows() > 0) {
             $result = $query->result_array();
@@ -37,6 +42,12 @@ class Model_Vendor extends CI_Model {
         }
     }
 
+    /**
+     * @method name User's Sign Up
+     * @param none 
+     * Description  
+     * @return None 
+     */
     public function vendorSignup() {
 
         $token = md5(microtime());
@@ -71,14 +82,16 @@ class Model_Vendor extends CI_Model {
         $this->email->message($body);
 
         $this->email->send();
-
-        //echo $body;
-
         redirect(site_url(SiteConfig::CONTROLLER_VENDOR . SiteConfig::METHOD_VENDOR_LOGIN));
 
-        //echo $this->email->print_debugger();
     }
 
+    /**
+     * @method name User's Sign Up
+     * @param none 
+     * Description  
+     * @return None 
+     */
     public function emailAddressCheck($email = "") {
         $this->db->where(DBConfig::TABLE_VENDOR_ATT_VENDOR_EMAIL, $email);
         $query = $this->db->get(DBConfig::TABLE_VENDOR);
@@ -90,6 +103,12 @@ class Model_Vendor extends CI_Model {
         }
     }
 
+    /**
+     * @method name User's Sign Up
+     * @param none 
+     * Description  
+     * @return None 
+     */
     public function checkActivationToken($token) {
         $this->db->select(DBConfig::TABLE_VENDOR_ATT_VENDOR_ID);
         $this->db->select(DBConfig::TABLE_VENDOR_ATT_VENDOR_STATUS);
@@ -118,16 +137,19 @@ class Model_Vendor extends CI_Model {
         }
     }
 
+    /**
+     * @method name User's Sign Up
+     * @param none 
+     * Description  
+     * @return None 
+     */
     public function makeLogin() {
         $this->db->where(DBConfig::TABLE_VENDOR_ATT_VENDOR_EMAIL, trim($_POST['email']));
         $this->db->where(DBConfig::TABLE_VENDOR_ATT_VENDOR_PASSWORD, md5($_POST['password']));
-        //$this->db->where(DBConfig::TABLE_VENDOR_ATT_VENDOR_STATUS, '1');
 
         $query = $this->db->get(DBConfig::TABLE_VENDOR);
 
         $numrows = $query->num_rows();
-
-        //echo $this->db->last_query();
 
         if ($numrows == 1) {
 
@@ -154,6 +176,12 @@ class Model_Vendor extends CI_Model {
         }
     }
 
+    /**
+     * @method name User's Sign Up
+     * @param none 
+     * Description  
+     * @return None 
+     */
     public function updatepassword($id) {
         $this->db->where(DBConfig::TABLE_USER_ATT_USER_ID, $id);
         $this->db->where(DBConfig::TABLE_USER_ATT_PASSWORD, md5($_POST['oldpass']));
@@ -170,6 +198,12 @@ class Model_Vendor extends CI_Model {
         }
     }
 
+    /**
+     * @method name User's Sign Up
+     * @param none 
+     * Description  
+     * @return None 
+     */
     public function updateProfile($userId) {
         $data[DBConfig::TABLE_VENDOR_ATT_VENDOR_BUSINESS_NAME] = trim($_POST['txtbusinessname']);
         $data[DBConfig::TABLE_VENDOR_ATT_VENDOR_NAME] = trim($_POST['txtName']);
@@ -181,8 +215,6 @@ class Model_Vendor extends CI_Model {
         $data[DBConfig::TABLE_VENDOR_ATT_VENDOR_WEB_URL] = trim($_POST['txtURL']);
         $data[DBConfig::TABLE_VENDOR_ATT_VENDOR_SERVICES] = json_encode($_POST['services']);
 
-
-//        debugPrint($data);
         $this->db->where(DBConfig::TABLE_VENDOR_ATT_VENDOR_ID, $userId);
         $insert = $this->db->update(DBConfig::TABLE_VENDOR, $data);
         if ($insert) {
@@ -192,6 +224,12 @@ class Model_Vendor extends CI_Model {
         }
     }
 
+    /**
+     * @method name User's Sign Up
+     * @param none 
+     * Description  
+     * @return None 
+     */
     public function getUserdata($id) {
         $this->db->where(DBConfig::TABLE_VENDOR_ATT_VENDOR_ID, $id);
         $result = $this->db->get(DBConfig::TABLE_VENDOR)->row_array();
@@ -209,12 +247,15 @@ class Model_Vendor extends CI_Model {
             $result['wb'][] = $value;
         }
 
-        //debugPrint($services);
-        //echo $this->db->last_query();
-
         return $result;
     }
 
+    /**
+     * @method name User's Sign Up
+     * @param none 
+     * Description  
+     * @return None 
+     */
     public function submitReview($userId = '') {
         $this->db->where(DBConfig::TABLE_VENDOR_RATING_ATT_USER_ID, $userId);
         $this->db->where(DBConfig::TABLE_VENDOR_RATING_ATT_VENDOR_ID, $_POST['vendorId']);
@@ -246,6 +287,12 @@ class Model_Vendor extends CI_Model {
         }
     }
 
+    /**
+     * @method name User's Sign Up
+     * @param none 
+     * Description  
+     * @return None 
+     */
     public function getVendorAllReview($vendorId = '') {
         $this->db->where(DBConfig::TABLE_VENDOR_REVIEW_ATT_VENDOR_ID, $vendorId);
         $query = $this->db->get(DBConfig::TABLE_VENDOR_REVIEW);
@@ -262,6 +309,12 @@ class Model_Vendor extends CI_Model {
         }
     }
 
+    /**
+     * @method name User's Sign Up
+     * @param none 
+     * Description  
+     * @return None 
+     */
     public function getUserTotalRating($vendorId, $userId) {
         $this->db->where(DBConfig::TABLE_VENDOR_RATING_ATT_USER_ID, $userId);
         $this->db->where(DBConfig::TABLE_VENDOR_RATING_ATT_VENDOR_ID, $vendorId);
@@ -276,6 +329,12 @@ class Model_Vendor extends CI_Model {
         }
     }
 
+    /**
+     * @method name User's Sign Up
+     * @param none 
+     * Description  
+     * @return None 
+     */
     private function getReviewerName($userId = '') {
         $this->db->where(DBConfig::TABLE_USER_ATT_USER_ID, $userId);
         $query = $this->db->get(DBConfig::TABLE_USER);
@@ -285,6 +344,12 @@ class Model_Vendor extends CI_Model {
         }
     }
 
+    /**
+     * @method name User's Sign Up
+     * @param none 
+     * Description  
+     * @return None 
+     */
     public function addToFavorite($userId = '') {
         $this->db->where(DBConfig::TABLE_FAVORITE_ATT_USER_ID, $userId);
         $this->db->where(DBConfig::TABLE_FAVORITE_ATT_VENDOR_ID, $_POST['vendorId']);
@@ -301,6 +366,12 @@ class Model_Vendor extends CI_Model {
         }
     }
 
+    /**
+     * @method name User's Sign Up
+     * @param none 
+     * Description  
+     * @return None 
+     */
     public function removeFavorite($userId = '') {
         $this->db->where(DBConfig::TABLE_FAVORITE_ATT_USER_ID, $userId);
         $this->db->where(DBConfig::TABLE_FAVORITE_ATT_VENDOR_ID, $_POST['vendorId']);
@@ -313,6 +384,12 @@ class Model_Vendor extends CI_Model {
         }
     }
 
+    /**
+     * @method name User's Sign Up
+     * @param none 
+     * Description  
+     * @return None 
+     */
     public function submitRating($userId = '') {
         $this->db->where(DBConfig::TABLE_VENDOR_RATING_ATT_USER_ID, $userId);
         $this->db->where(DBConfig::TABLE_VENDOR_RATING_ATT_VENDOR_ID, $_POST['vendorId']);
@@ -330,6 +407,12 @@ class Model_Vendor extends CI_Model {
         }
     }
 
+    /**
+     * @method name User's Sign Up
+     * @param none 
+     * Description  
+     * @return None 
+     */
     public function MasterCardValidityCheck($num) {
         $checkMasterCardPattern = $this->get_cc_type($num);
 
@@ -348,6 +431,12 @@ class Model_Vendor extends CI_Model {
         }
     }
 
+    /**
+     * @method name User's Sign Up
+     * @param none 
+     * Description  
+     * @return None 
+     */
     public function get_cc_type($cardNumber) {
         // Strip non-digits from the number
         $cardNumber = preg_replace('/\D/', '', $cardNumber);
@@ -418,11 +507,15 @@ class Model_Vendor extends CI_Model {
         return ($combineTotal % 10 == 0) ? true : false;
     }
 
+    /**
+     * @method name User's Sign Up
+     * @param none 
+     * Description  
+     * @return None 
+     */
     public function getAdvanceSearch($stateId, $services) {
         $this->db->where(DBConfig::TABLE_VENDOR_ATT_VENDOR_STATE_ID, $stateId);
         $result = $this->db->get(DBConfig::TABLE_VENDOR)->result_array();
-
-        //echo $this->db->last_query();
 
         $ratingarray = array();
 
@@ -445,14 +538,17 @@ class Model_Vendor extends CI_Model {
                     array_push($data, $row);
                 }
             }
-
-            //debugPrint($ratingarray);
-
             usort($data, 'shortSearchResultByRate');
             return $data;
         }
     }
 
+    /**
+     * @method name User's Sign Up
+     * @param none 
+     * Description  
+     * @return None 
+     */
     public function getVendorByState($stateId) {
         $this->db->where(DBConfig::TABLE_VENDOR_ATT_VENDOR_STATE_ID, $stateId);
 
@@ -471,6 +567,12 @@ class Model_Vendor extends CI_Model {
         return $data;
     }
 
+    /**
+     * @method name User's Sign Up
+     * @param none 
+     * Description  
+     * @return None 
+     */
     public function getVendorRating($vendorId=0) {
         $sql = 'SELECT COUNT( * ) AS vote, AVG(' . DBConfig::TABLE_VENDOR_RATING_ATT_RATING . ') AS Rating
                 FROM ' . DBConfig::TABLE_VENDOR_RATING . '
@@ -482,26 +584,24 @@ class Model_Vendor extends CI_Model {
         return $result;
     }
 
+    /**
+     * @method name User's Sign Up
+     * @param none 
+     * Description  
+     * @return None 
+     */
     public function reportViolation($usrId, $eventinfoId) {
         $this->db->order_by(DBConfig::TABLE_EVENT_MESSAGE_ATT_MESSAGE_ID, "ASC");
         $this->db->where(DBConfig::TABLE_EVENT_MESSAGE_ATT_EVENT_INFO_ID, $eventinfoId);
         $this->db->where(DBConfig::TABLE_EVENT_MESSAGE_ATT_SENDER_TYPE, "2");
         $this->db->where(DBConfig::TABLE_EVENT_MESSAGE_ATT_RECEIVER_ID, $usrId);
 
-
-
         $result = $this->db->get(DBConfig::TABLE_EVENT_MESSAGE, '1')->row_array();
 
-        //echo $this->db->last_query();
-        //debugPrint($result);
-
-
-        $this->db->where(DBConfig::TABLE_EVENT_MESSAGE_REPORT_VIOLATION_ATT_REPORT_VIOLATION_REPORTER_ID, $usrId);
+           $this->db->where(DBConfig::TABLE_EVENT_MESSAGE_REPORT_VIOLATION_ATT_REPORT_VIOLATION_REPORTER_ID, $usrId);
         $this->db->where(DBConfig::TABLE_EVENT_MESSAGE_REPORT_VIOLATION_ATT_REPORT_VIOLATION_EVENT_INFO_ID, $eventinfoId);
 
         $result1 = $this->db->get(DBConfig::TABLE_EVENT_MESSAGE_REPORT_VIOLATION)->num_rows();
-
-        //echo $this->db->last_query();
 
         if ($result1 == 0) {
             $data[DBConfig::TABLE_EVENT_MESSAGE_REPORT_VIOLATION_ATT_REPORT_VIOLATION_REPORTER_ID] = $usrId;
@@ -522,6 +622,12 @@ class Model_Vendor extends CI_Model {
         }
     }
 
+    /**
+     * @method name User's Sign Up
+     * @param none 
+     * Description  
+     * @return None 
+     */
     public function sendQuoteMailToVendor($serviceArray) {
         $result = $this->db->get(DBConfig::TABLE_VENDOR)->result_array();
 
@@ -569,7 +675,6 @@ class Model_Vendor extends CI_Model {
             }
         }
 
-        //debugPrint($emailList);
         $this->db->where(DBConfig::TABLE_EMAIL_TEMPLATE_ATT_EMAIL_TEMPLATE_ID, "1");
         $emailTemplate = $this->db->get(DBConfig::TABLE_EMAIL_TEMPLATE)->row_array();
 
@@ -595,6 +700,12 @@ class Model_Vendor extends CI_Model {
         return '1';
     }
 
+    /**
+     * @method name User's Sign Up
+     * @param none 
+     * Description  
+     * @return None 
+     */
     public function deleteEventInfo() {
         $data[DBConfig::TABLE_EVENT_INFO_ATT_EVENT_TYPE_ID] = FALSE;
         $data[DBConfig::TABLE_EVENT_INFO_ATT_OTHER_EVENT_TYPE] = FALSE;
@@ -608,6 +719,12 @@ class Model_Vendor extends CI_Model {
         $this->session->unset_userdata($data);
     }
 
+    /**
+     * @method name User's Sign Up
+     * @param none 
+     * Description  
+     * @return None 
+     */
     public function insertEventInfo($vendorid = '') {
         $data[DBConfig::TABLE_EVENT_INFO_ATT_EVENT_TYPE_ID] = $this->input->post(DBConfig::TABLE_EVENT_ATT_EVENT_TYPE_ID, TRUE);
         $data[DBConfig::TABLE_EVENT_INFO_ATT_OTHER_EVENT_TYPE] = $this->input->post('otherEvent', TRUE);
@@ -623,8 +740,7 @@ class Model_Vendor extends CI_Model {
             $category = $selectedCategories[$i];
             $data['selectCategory' . $category] = $category;
         }
-//        debugPrint($data);
-//        exit();
+
         $data['step1'] = 'Done';
         $this->session->set_userdata($data);
 
@@ -643,6 +759,12 @@ class Model_Vendor extends CI_Model {
         }
     }
 
+    /**
+     * @method name User's Sign Up
+     * @param none 
+     * Description  
+     * @return None 
+     */
     public function getVendorRatingByID($id) {
         $this->db->where(DBConfig::TABLE_VENDOR_RATING_ATT_VENDOR_ID, $id);
         $r = $this->db->get(DBConfig::TABLE_VENDOR_RATING)->result_array();
@@ -654,12 +776,15 @@ class Model_Vendor extends CI_Model {
             $row['ratebar'] = getRatingBar($row[DBConfig::TABLE_VENDOR_RATING_ATT_RATING]);
             array_push($data, $row);
         }
-
-        //debugPrint($data);
-
         return $data;
     }
 
+    /**
+     * @method name User's Sign Up
+     * @param none 
+     * Description  
+     * @return None 
+     */
     public function getVendorReview($vendorId, $userID) {
         $this->db->where(DBConfig::TABLE_VENDOR_REVIEW_ATT_VENDOR_ID, $vendorId);
         $this->db->where(DBConfig::TABLE_VENDOR_REVIEW_ATT_USER_ID, $userID);
@@ -668,6 +793,12 @@ class Model_Vendor extends CI_Model {
         return $r;
     }
 
+    /**
+     * @method name User's Sign Up
+     * @param none 
+     * Description  
+     * @return None 
+     */
     public function sendReportForRating($vid) {
         $this->db->where(DBConfig::TABLE_VENDOR_REPORT_RATING_ATT_VENDOR_ID, $vid);
         $this->db->where(DBConfig::TABLE_VENDOR_REPORT_RATING_ATT_RATING_ID, $_POST['rID']);
@@ -690,6 +821,12 @@ class Model_Vendor extends CI_Model {
         }
     }
 
+    /**
+     * @method name User's Sign Up
+     * @param none 
+     * Description  
+     * @return None 
+     */
     public function changeVendorLogo($vendorId) {
 
         $path = "assets/public/vendor/";
@@ -735,6 +872,12 @@ class Model_Vendor extends CI_Model {
         }
     }
 
+    /**
+     * @method name User's Sign Up
+     * @param none 
+     * Description  
+     * @return None 
+     */
     public function getVendorLogo($vendorId) {
         $this->db->where(DBConfig::TABLE_VENDOR_ATT_VENDOR_ID, $vendorId);
         $r = $this->db->get(DBConfig::TABLE_VENDOR)->row_array();
@@ -744,6 +887,12 @@ class Model_Vendor extends CI_Model {
         }
     }
 
+    /**
+     * @method name User's Sign Up
+     * @param none 
+     * Description  
+     * @return None 
+     */
     public function submitRatingAjax($userId) {
         $this->db->where(DBConfig::TABLE_VENDOR_RATING_ATT_USER_ID, $userId);
         $this->db->where(DBConfig::TABLE_VENDOR_RATING_ATT_VENDOR_ID, cpr_decode($_POST['vId']));

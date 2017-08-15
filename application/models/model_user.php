@@ -9,6 +9,12 @@ class Model_User extends CI_Model {
         parent::__construct();
     }
 
+    /**
+     * @method name User's Sign Up
+     * @param none 
+     * Description  
+     * @return None 
+     */
     public function userSignup() {
         $data[DBConfig::TABLE_USER_ATT_NAME] = $this->input->post(DBConfig::TABLE_USER_ATT_NAME, TRUE);
         $data[DBConfig::TABLE_USER_ATT_EMAIL] = $this->input->post(DBConfig::TABLE_USER_ATT_EMAIL, TRUE);
@@ -24,7 +30,6 @@ class Model_User extends CI_Model {
 
         $data[DBConfig::TABLE_USER_ATT_WHICH_BEST] = $best;
 
-//        debugPrint($data);
         $insert = $this->db->insert(DBConfig::TABLE_USER, $data);
         $userId = $this->db->insert_id();
         if ($insert) {
@@ -47,6 +52,12 @@ class Model_User extends CI_Model {
         }
     }
 
+    /**
+     * @method name User's Sign Up
+     * @param none 
+     * Description  
+     * @return None 
+     */
     public function insertSubscribeData() {
         $data[DBConfig::TABLE_SUBSCRIBER_ATT_SUBSCRIBER_NAME] = trim($_POST['txtFirstName']);
         $data[DBConfig::TABLE_SUBSCRIBER_ATT_SUBSCRIBER_EMAIL] = trim($_POST['txtEmail']);
@@ -60,12 +71,24 @@ class Model_User extends CI_Model {
             return '1';
     }
 
+    /**
+     * @method name User's Sign Up
+     * @param none 
+     * Description  
+     * @return None 
+     */
     public function getEmailIsAlreadyInUse($email = '') {
         $this->db->where(DBConfig::TABLE_USER_ATT_EMAIL, $email);
         $query = $this->db->get(DBConfig::TABLE_USER);
         return $query->num_rows();
     }
 
+    /**
+     * @method name User's Sign Up
+     * @param none 
+     * Description  
+     * @return None 
+     */
     public function checkLogin() {
         $this->db->where(DBConfig::TABLE_USER_ATT_EMAIL, trim($_POST[DBConfig::TABLE_USER_ATT_EMAIL]));
         $this->db->where(DBConfig::TABLE_USER_ATT_PASSWORD, md5($_POST[DBConfig::TABLE_USER_ATT_PASSWORD]));
@@ -96,12 +119,24 @@ class Model_User extends CI_Model {
         }
     }
 
+    /**
+     * @method name User's Sign Up
+     * @param none 
+     * Description  
+     * @return None 
+     */
     private function updateEventInfo($eventInfoId = '', $userId = 0) {
         $this->db->where(DBConfig::TABLE_EVENT_INFO_ATT_EVENT_INFO_ID, $eventInfoId);
         $this->db->set(DBConfig::TABLE_EVENT_INFO_ATT_USER_ID, $userId);
         $this->db->update(DBConfig::TABLE_EVENT_INFO);
     }
 
+    /**
+     * @method name User's Sign Up
+     * @param none 
+     * Description  
+     * @return None 
+     */
     private function updateLoginInfo($userId = 0) {
         $data[DBConfig::TABLE_USER_ATT_LAST_LOGIN_DATE] = date('Y-m-d H:i:s');
         $data[DBConfig::TABLE_USER_ATT_IP_ADDRESS] = $_SERVER['SERVER_ADDR'];
@@ -111,6 +146,12 @@ class Model_User extends CI_Model {
         $this->db->update(DBConfig::TABLE_USER);
     }
 
+    /**
+     * @method name User's Sign Up
+     * @param none 
+     * Description  
+     * @return None 
+     */
     public function getFavoriteList($userId = 0) {
         $this->db->where(DBConfig::TABLE_FAVORITE_ATT_USER_ID, $userId);
         $query = $this->db->get(DBConfig::TABLE_FAVORITE);
@@ -126,6 +167,12 @@ class Model_User extends CI_Model {
         }
     }
 
+    /**
+     * @method name User's Sign Up
+     * @param none 
+     * Description  
+     * @return None 
+     */
     private function getVendorName($vendorId = 0) {
         $this->db->where(DBConfig::TABLE_VENDOR_ATT_VENDOR_ID, $vendorId);
         $query = $this->db->get(DBConfig::TABLE_VENDOR);
@@ -135,6 +182,12 @@ class Model_User extends CI_Model {
         }
     }
 
+    /**
+     * @method name User's Sign Up
+     * @param none 
+     * Description  
+     * @return None 
+     */
     public function getUsernameById($userid) {
         $this->db->where(DBConfig::TABLE_USER_ATT_USER_ID, $userid);
         $query = $this->db->get(DBConfig::TABLE_USER);
@@ -144,6 +197,12 @@ class Model_User extends CI_Model {
         }
     }
 
+    /**
+     * @method name User's Sign Up
+     * @param none 
+     * Description  
+     * @return None 
+     */
     public function getUserInboxMessage($userid) {
         $sql = 'SELECT ' . DBConfig::TABLE_EVENT_MESSAGE . '.*,' . DBConfig::TABLE_VENDOR . '.' . DBConfig::TABLE_VENDOR_ATT_VENDOR_NAME . ',' . DBConfig::TABLE_USER . '.' . DBConfig::TABLE_USER_ATT_NAME . ',' . DBConfig::TABLE_EVENT_INFO . '.' . DBConfig::TABLE_EVENT_INFO_ATT_EVENT_NAME . '
                 FROM ' . DBConfig::TABLE_EVENT_MESSAGE . '
@@ -166,6 +225,12 @@ class Model_User extends CI_Model {
         return $data;
     }
 
+    /**
+     * @method name User's Sign Up
+     * @param none 
+     * Description  
+     * @return None 
+     */
     public function checkUnreadMessage($userid, $eid) {
         $this->db->where(DBConfig::TABLE_EVENT_MESSAGE_ATT_RECEIVER_ID, $userid);
         $this->db->where(DBConfig::TABLE_EVENT_MESSAGE_ATT_EVENT_INFO_ID, $eid);
@@ -176,6 +241,12 @@ class Model_User extends CI_Model {
         return $result;
     }
 
+    /**
+     * @method name User's Sign Up
+     * @param none 
+     * Description  
+     * @return None 
+     */
     public function getMessages($ownerId, $eid) {
         $this->db->where(DBConfig::TABLE_EVENT_MESSAGE_ATT_RECEIVER_ID, $ownerId);
         $this->db->where(DBConfig::TABLE_EVENT_MESSAGE_ATT_EVENT_INFO_ID, $eid);
@@ -231,6 +302,12 @@ class Model_User extends CI_Model {
         }
     }
 
+    /**
+     * @method name User's Sign Up
+     * @param none 
+     * Description  
+     * @return None 
+     */
     public function sendUserReply($userId) {
         $eventInfoId = cpr_decode($_POST['eid']);
         $this->db->where(DBConfig::TABLE_EVENT_MESSAGE_ATT_EVENT_INFO_ID, $eventInfoId);
@@ -271,6 +348,12 @@ class Model_User extends CI_Model {
         }
     }
 
+    /**
+     * @method name User's Sign Up
+     * @param none 
+     * Description  
+     * @return None 
+     */
     public function getUserInfo($userid = 0) {
         $this->db->where(DBConfig::TABLE_USER_ATT_USER_ID, $userid);
         $query = $this->db->get(DBConfig::TABLE_USER);
@@ -280,6 +363,12 @@ class Model_User extends CI_Model {
         }
     }
 
+    /**
+     * @method name User's Sign Up
+     * @param none 
+     * Description  
+     * @return None 
+     */
     public function updateProfile($userid = 0) {
         $data[DBConfig::TABLE_USER_ATT_NAME] = $this->input->post(DBConfig::TABLE_USER_ATT_NAME, TRUE);
         $data[DBConfig::TABLE_USER_ATT_ZIP_CODE] = $this->input->post(DBConfig::TABLE_USER_ATT_ZIP_CODE, TRUE);
@@ -296,6 +385,12 @@ class Model_User extends CI_Model {
         }
     }
 
+    /**
+     * @method name User's Sign Up
+     * @param none 
+     * Description  
+     * @return None 
+     */
     public function checkOldPassword($password = '') {
         $this->db->where(DBConfig::TABLE_USER_ATT_USER_ID, $this->session->userdata('userId'));
         $this->db->where(DBConfig::TABLE_USER_ATT_PASSWORD, md5($password));
@@ -303,6 +398,12 @@ class Model_User extends CI_Model {
         return $query->num_rows();
     }
 
+    /**
+     * @method name User's Sign Up
+     * @param none 
+     * Description  
+     * @return None 
+     */
     public function updatePassword($userid = 0) {
         $data[DBConfig::TABLE_USER_ATT_PASSWORD] = md5($this->input->post('newPassword'));
 
@@ -316,6 +417,12 @@ class Model_User extends CI_Model {
         }
     }
 
+    /**
+     * @method name User's Sign Up
+     * @param none 
+     * Description  
+     * @return None 
+     */
     public function reportViolation($usrId, $eventinfoId) {
         $this->db->order_by(DBConfig::TABLE_EVENT_MESSAGE_ATT_MESSAGE_ID, "ASC");
         $this->db->where(DBConfig::TABLE_EVENT_MESSAGE_ATT_EVENT_INFO_ID, $eventinfoId);
@@ -353,6 +460,12 @@ class Model_User extends CI_Model {
         }
     }
 
+    /**
+     * @method name User's Sign Up
+     * @param none 
+     * Description  
+     * @return None 
+     */
     public function getUserRatingReview($userId) {
         $this->db->where(DBConfig::TABLE_VENDOR_RATING_ATT_USER_ID,$userId);
         $r = $this->db->get(DBConfig::TABLE_VENDOR_RATING)->result_array();
@@ -368,6 +481,12 @@ class Model_User extends CI_Model {
        return $data;
     }
     
+    /**
+     * @method name User's Sign Up
+     * @param none 
+     * Description  
+     * @return None 
+     */
     public function getVendorReview($userId,$vendorId)
     {
         $this->db->where(DBConfig::TABLE_VENDOR_REVIEW_ATT_USER_ID,$userId);
@@ -377,6 +496,12 @@ class Model_User extends CI_Model {
         return $r;
     }
     
+    /**
+     * @method name User's Sign Up
+     * @param none 
+     * Description  
+     * @return None 
+     */
     public function updateVendorRatingReview($userId)
     {
         $data1[DBConfig::TABLE_VENDOR_RATING_ATT_RATING] = $_POST['rating'];

@@ -1,13 +1,24 @@
-function vendorlogout(){
+/**
+ * Description
+ * @method vendorlogout
+ * @return 
+ */
+function vendorlogout() {
     var r = confirm('Are you sure ?');
-    if(r===true)
+    if (r === true)
         $.ajax({
-            type:"GET",
-            url:base_url+logoutUrl,
-            success:function(res)
+            type: "GET",
+            url: base_url + logoutUrl,
+            /**
+             * Description
+             * @method success
+             * @param {} res
+             * @return 
+             */
+            success: function (res)
             {
                 //alert(res);
-                if(res==='1'){
+                if (res === '1') {
                     location.reload();
                 }
             }

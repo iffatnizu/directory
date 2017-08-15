@@ -5,6 +5,12 @@ var userLoadId;
 
 var directory = {
     
+    /**
+     * Description
+     * @method getAllMessageById
+     * @param {} id
+     * @return 
+     */
     getAllMessageById:function(id)
     {
         $(".msgTitleBox ul li").css({
@@ -21,6 +27,12 @@ var directory = {
                 "eid":id,
                 "submit":"1"
             },
+            /**
+             * Description
+             * @method success
+             * @param {} res
+             * @return 
+             */
             success:function(res)
             {
                 if(res!==""){
@@ -43,6 +55,12 @@ var directory = {
         });
 
     },
+    /**
+     * Description
+     * @method getUserMessageById
+     * @param {} id
+     * @return 
+     */
     getUserMessageById:function(id)
     {
         $(".msgTitleBox ul li").css({
@@ -59,6 +77,12 @@ var directory = {
                 "eid":id,
                 "submit":"1"
             },
+            /**
+             * Description
+             * @method success
+             * @param {} res
+             * @return 
+             */
             success:function(res)
             {
                 if(res!==""){
@@ -82,6 +106,11 @@ var directory = {
         });
 
     },
+    /**
+     * Description
+     * @method intervalForLoadMessage
+     * @return 
+     */
     intervalForLoadMessage:function()
     {
         $.ajax({
@@ -91,6 +120,12 @@ var directory = {
                 "eid":loadId,
                 "submit":"1"
             },
+            /**
+             * Description
+             * @method success
+             * @param {} res
+             * @return 
+             */
             success:function(res)
             {               
                 if(res!==""){
@@ -106,6 +141,11 @@ var directory = {
         });
 
     },
+    /**
+     * Description
+     * @method intervalForLoadUserMessage
+     * @return 
+     */
     intervalForLoadUserMessage:function()
     {
         $.ajax({
@@ -115,6 +155,12 @@ var directory = {
                 "eid":userLoadId,
                 "submit":"1"
             },
+            /**
+             * Description
+             * @method success
+             * @param {} res
+             * @return 
+             */
             success:function(res)
             {
                 if(res!==""){
@@ -129,10 +175,21 @@ var directory = {
         });
 
     },
+    /**
+     * Description
+     * @method forceLoadMessage
+     * @return 
+     */
     forceLoadMessage:function()
     {
         $("a[class=pm_1]").trigger("click");
     },
+    /**
+     * Description
+     * @method sendReply
+     * @param {} eid
+     * @return 
+     */
     sendReply:function(eid)
     {
         var replyMsg = $("div[class=sendReply_"+eid+"]").html();
@@ -151,6 +208,12 @@ var directory = {
                     "eid":eid,
                     "submit":"1"
                 },
+                /**
+                 * Description
+                 * @method success
+                 * @param {} res
+                 * @return 
+                 */
                 success:function(res){
                     var obj = $.parseJSON(res);
                     var tag = '<li id="" class="'+obj.cssclass+'"><h6><i class="icon-user"></i> '+obj.username+' Says :</h6><p>'+obj.messageDescription+'</p></li><br clear="all"/>';
@@ -160,6 +223,12 @@ var directory = {
             });
         }
     },
+    /**
+     * Description
+     * @method sendUserReply
+     * @param {} eid
+     * @return 
+     */
     sendUserReply:function(eid)
     {
         var replyMsg = $("div[class=sendReply_"+eid+"]").html();
@@ -178,6 +247,12 @@ var directory = {
                     "eid":eid,
                     "submit":"1"
                 },
+                /**
+                 * Description
+                 * @method success
+                 * @param {} res
+                 * @return 
+                 */
                 success:function(res){
                     var obj = $.parseJSON(res);
                     var tag = '<li id="" class="'+obj.cssclass+'"><h6><i class="icon-user"></i> '+obj.username+' Says :</h6><p>'+obj.messageDescription+'</p></li><br clear="all"/>';

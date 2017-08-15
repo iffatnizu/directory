@@ -18,6 +18,12 @@ class Model_Events extends CI_Model {
         $this->email->initialize($config);
     }
 
+    /**
+     * @method name User's Sign Up
+     * @param none 
+     * Description  
+     * @return None 
+     */
     public function getAllEvents() {
         $sql = 'SELECT ' . DBConfig::TABLE_EVENT_INFO . '.*,
                        ' . DBConfig::TABLE_EVENT_TYPE . '.*, 
@@ -34,6 +40,12 @@ class Model_Events extends CI_Model {
         return $result;
     }
 
+    /**
+     * @method name User's Sign Up
+     * @param none 
+     * Description  
+     * @return None 
+     */
     public function eventsDetails($id=0) {
         $sql = 'SELECT ' . DBConfig::TABLE_EVENT_INFO . '.*,
                        ' . DBConfig::TABLE_EVENT_TYPE . '.*, 
@@ -57,12 +69,15 @@ class Model_Events extends CI_Model {
             $result['photography'] = $this->getPhotographyByEventInfoId($id);
             $result['Limos'] = $this->getLimosByEventInfoId($id);
         }
-
-        //debugPrint($result);
-
         return $result;
     }
 
+    /**
+     * @method name User's Sign Up
+     * @param none 
+     * Description  
+     * @return None 
+     */
     public function getCateringByEventInfoId($id) {
         $this->db->where(DBConfig::TABLE_CATERING_ATT_EVENT_INFO_ID, $id);
         $result = $this->db->get(DBConfig::TABLE_CATERING)->result_array();
@@ -83,8 +98,13 @@ class Model_Events extends CI_Model {
         return $data;
     }
 
+    /**
+     * @method name User's Sign Up
+     * @param none 
+     * Description  
+     * @return None 
+     */
     public function getReceptionHallByEventInfoId($id) {
-        //echo $id;
         $this->db->where(DBConfig::TABLE_RECEPTION_HALLS_ATT_EVENT_INFO_ID, $id);
         $result = $this->db->get(DBConfig::TABLE_RECEPTION_HALLS)->result_array();
         $data = array();
@@ -107,6 +127,12 @@ class Model_Events extends CI_Model {
         return $data;
     }
 
+    /**
+     * @method name User's Sign Up
+     * @param none 
+     * Description  
+     * @return None 
+     */
     public function getEntertainmentByEventInfoId($id) {
         $this->db->where(DBConfig::TABLE_ENTERTAINMENT_ATT_EVENT_INFO_ID, $id);
         $result = $this->db->get(DBConfig::TABLE_ENTERTAINMENT)->result_array();
@@ -130,6 +156,12 @@ class Model_Events extends CI_Model {
         return $data;
     }
 
+    /**
+     * @method name User's Sign Up
+     * @param none 
+     * Description  
+     * @return None 
+     */
     public function getFloristsByEventInfoId($id) {
         $this->db->where(DBConfig::TABLE_FLORISTS_ATT_EVENT_INFO_ID, $id);
         $result = $this->db->get(DBConfig::TABLE_FLORISTS)->result_array();
@@ -163,6 +195,12 @@ class Model_Events extends CI_Model {
         return $data;
     }
 
+    /**
+     * @method name User's Sign Up
+     * @param none 
+     * Description  
+     * @return None 
+     */
     public function getPhotographyByEventInfoId($id) {
         $this->db->where(DBConfig::TABLE_PHOTOGRAPHY_ATT_EVENT_INFO_ID, $id);
         $result = $this->db->get(DBConfig::TABLE_PHOTOGRAPHY)->result_array();
@@ -177,6 +215,12 @@ class Model_Events extends CI_Model {
         return $data;
     }
 
+    /**
+     * @method name User's Sign Up
+     * @param none 
+     * Description  
+     * @return None 
+     */
     public function getLimosByEventInfoId($id=0) {
         $this->db->where(DBConfig::TABLE_LIQUOR_ATT_EVENT_INFO_ID, $id);
         $result = $this->db->get(DBConfig::TABLE_LIQUOR)->result_array();
@@ -199,6 +243,12 @@ class Model_Events extends CI_Model {
         return $data;
     }
 
+    /**
+     * @method name User's Sign Up
+     * @param none 
+     * Description  
+     * @return None 
+     */
     public function bookmarkservice() {
         $check = isServiceBookmarked($_GET['serviceid'], cpr_decode($_GET['eventsInfoid']), $_GET['servicelistId'], $this->session->userdata('_userId'));
         if ($check == '0') {
@@ -215,6 +265,12 @@ class Model_Events extends CI_Model {
         }
     }
 
+    /**
+     * @method name User's Sign Up
+     * @param none 
+     * Description  
+     * @return None 
+     */
     public function removebookmarkservice() {
         $this->db->where(DBConfig::TABLE_BOOKMARK_ATT_BOOKMARK_SERVICE_ID, $_GET['serviceid']);
         $this->db->where(DBConfig::TABLE_BOOKMARK_ATT_BOOKMARK_EVENTS_INFO_ID, cpr_decode($_GET['eventsInfoid']));
@@ -228,6 +284,12 @@ class Model_Events extends CI_Model {
         }
     }
 
+    /**
+     * @method name User's Sign Up
+     * @param none 
+     * Description  
+     * @return None 
+     */
     public function getAllbookmark($id) {
         $sql = 'SELECT * FROM ' . DBConfig::TABLE_BOOKMARK . '                 
                 WHERE ' . DBConfig::TABLE_BOOKMARK_ATT_BOOKMARK_VENDOR_ID . ' = "' . $id . '"
@@ -247,6 +309,12 @@ class Model_Events extends CI_Model {
         return $data;
     }
 
+    /**
+     * @method name User's Sign Up
+     * @param none 
+     * Description  
+     * @return None 
+     */
     public function getEventsDetails($id) {
         $sql = 'SELECT ' . DBConfig::TABLE_EVENT_INFO . '.*,
                        ' . DBConfig::TABLE_EVENT_TYPE . '.*, 

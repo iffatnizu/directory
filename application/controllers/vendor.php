@@ -8,12 +8,22 @@ require_once 'siteConfig.php';
 require_once 'dbConfig.php';
 require_once APPPATH . 'directory/vendorconfig.php';
 
+/**
+ * This class does vendor's operations
+ * @author Iffat Nizu
+ * @requires siteconfig.php & dbconfig.php files
+ * Functions list - index, details, registration, emailAddressCheck, MasterCardValidityCheck, MasterCardValidityCheck
+ * MasterCardValidityCheck, account, directory, advancesearch, search, old_login, doLogin, logout, updatepassword,
+ * login, dashboard, profile, editprofile, changepassword, submitReview, addToFavorite, submitRating, stateVendors,
+ * reportViolation, ratingReview, sendReportForRating,changeLogo,submitRatingAjax  
+ *       
+ */
 class Vendor extends CI_Controller {
 
     public function Vendor() {
         parent::__construct();
         $this->load->library(array('form_validation', 'email', 'session'));
-        $this->load->helper('user','events');
+        $this->load->helper('user', 'events');
         $this->load->model('model_home');
         $this->load->model('model_vendor');
 
@@ -25,12 +35,30 @@ class Vendor extends CI_Controller {
         $this->email->initialize($config);
     }
 
+    /**
+     * @author Iffat Nizu
+     * @package directory
+     * @access public
+     * @name function index()
+     * @param 
+     * @uses for index function for vendor class 
+     * @return  
+     */
     public function index() {
         $this->login();
     }
 
+    /**
+     * @author Iffat Nizu
+     * @package directory
+     * @access public
+     * @name function details()
+     * @param int $vendorId
+     * @param string $vendorname
+     * @uses for index function for vendor class 
+     * @return  
+     */
     public function details($vendorid, $vendorname) {
-        //echo to10($vendorid);
         $allCategory = getAllCategory();
         if (!empty($allCategory)) {
             foreach ($allCategory as $category) {
@@ -72,6 +100,15 @@ class Vendor extends CI_Controller {
         $this->load->view(siteConfig::SITE_MASTER, $page);
     }
 
+    /**
+     * @author Iffat Nizu
+     * @package directory
+     * @access public
+     * @name function registration()
+     * @param 
+     * @uses for vendor's registration 
+     * @return  
+     */
     public function registration() {
         if (!$this->session->userdata('_userLogin')) {
             if (isset($_POST['vendorsubmit'])) {
@@ -84,15 +121,8 @@ class Vendor extends CI_Controller {
                 $this->form_validation->set_rules('stateId', 'State', 'required');
                 $this->form_validation->set_rules('txtzip', 'Zip Code', 'required|integer|min_length[4]');
                 $this->form_validation->set_rules('services[]', 'Services', 'required');
-//                $this->form_validation->set_rules('txtCardName', 'Card Holder Name', 'required');
-//                $this->form_validation->set_rules('txtCardNumber', 'Card Number', 'required|callback_MasterCardValidityCheck');
-//                $this->form_validation->set_rules('txtCardCVV', 'Card CVV', 'required');
-//                $this->form_validation->set_rules('txtCardExpMonth', 'Card Exp.Month', 'required');
-//                $this->form_validation->set_rules('txtCardExpYear', 'Card Exp.Year', 'required');
-
 
                 if ($this->form_validation->run() == TRUE) {
-//            debugPrint($_POST);
                     $this->model_vendor->vendorSignup();
                 }
             }
@@ -108,6 +138,15 @@ class Vendor extends CI_Controller {
         }
     }
 
+    /**
+     * @author Iffat Nizu
+     * @package directory
+     * @access public
+     * @name function emailAddressCheck()
+     * @param string $email
+     * @uses for checking vendor's email address 
+     * @return boolean
+     */
     public function emailAddressCheck($email = "") {
 
         $check = $this->model_vendor->emailAddressCheck($email);
@@ -120,6 +159,15 @@ class Vendor extends CI_Controller {
         }
     }
 
+    /**
+     * @author Iffat Nizu
+     * @package directory
+     * @access public
+     * @name function MasterCardValidityCheck()
+     * @param int $num
+     * @uses for checking master card validation
+     * @return boolean 
+     */
     public function MasterCardValidityCheck($num) {
         $check = $this->model_vendor->MasterCardValidityCheck($num);
         if ($check == '1') {
@@ -130,7 +178,17 @@ class Vendor extends CI_Controller {
         }
     }
 
-    public function account($param="", $token="") {
+    /**
+     * @author Iffat Nizu
+     * @package directory
+     * @access public
+     * @name function account()
+     * @param string $param
+     * @param boolean $token
+     * @uses for activating process vendor's account 
+     * @return  
+     */
+    public function account($param = "", $token = "") {
         $data['msg'] = "";
         if ($token == true) {
             if ($param == 'activation') {
@@ -153,6 +211,15 @@ class Vendor extends CI_Controller {
         }
     }
 
+    /**
+     * @author Iffat Nizu
+     * @package directory
+     * @access public
+     * @name function directory()
+     * @param 
+     * @uses for selecting option for searching  
+     * @return  
+     */
     public function directory() {
         if (isset($_POST['submit'])) {
             if (isset($_POST['selectSearch'])) {
@@ -174,6 +241,15 @@ class Vendor extends CI_Controller {
         $this->load->view(siteConfig::SITE_MASTER, $page);
     }
 
+    /**
+     * @author Iffat Nizu
+     * @package directory
+     * @access public
+     * @name function advancesearch()
+     * @param 
+     * @uses for vendor's advance search based 
+     * @return  
+     */
     public function advancesearch() {
         $data['title'] = 'Vendor Advance Search';
         if (!empty($_GET)) {
@@ -183,7 +259,7 @@ class Vendor extends CI_Controller {
                     $services = explode(",", $_GET['serviceID']);
                     $data['servicesarray'] = $services;
                     $data['stateName'] = getStateNameById($stateId);
-                    $data['services']  = getFormatedServices($services);
+                    $data['services'] = getFormatedServices($services);
                     $data['advSrcResult'] = $this->model_vendor->getAdvanceSearch($stateId, $services);
                 }
             }
@@ -195,6 +271,15 @@ class Vendor extends CI_Controller {
         $this->load->view(siteConfig::SITE_MASTER, $page);
     }
 
+    /**
+     * @author Iffat Nizu
+     * @package directory
+     * @access public
+     * @name function search()
+     * @param 
+     * @uses for searching vendor list by city, state 
+     * @return  
+     */
     public function search() {
         if (isset($_GET['searchVendor'])) {
             $data['userList'] = $this->model_vendor->getUserListByCity();
@@ -212,12 +297,15 @@ class Vendor extends CI_Controller {
         $this->load->view(siteConfig::SITE_MASTER, $page);
     }
 
-    /*
-     * @uses not in use since 6-26-2013
-     * @author <akram@corepiler.com>
-     * 
+    /**
+     * @author Iffat Nizu
+     * @package directory
+     * @access public
+     * @name function old_login()
+     * @param 
+     * @uses for vendor's login action 
+     * @return  
      */
-
     public function old_login() {
         if (!$this->session->userdata('_userLogin')) {
             $data['title'] = 'Login';
@@ -230,8 +318,16 @@ class Vendor extends CI_Controller {
         }
     }
 
+    /**
+     * @author Iffat Nizu
+     * @package directory
+     * @access public
+     * @name function doLogin()
+     * @param 
+     * @uses for vendor's success login 
+     * @return  
+     */
     public function doLogin() {
-        //debugPrint($_REQUEST);
         if (isset($_POST['signin'])) {
             $login = $this->model_vendor->makeLogin();
             if ($login != '0' && $login != '2') {
@@ -250,6 +346,15 @@ class Vendor extends CI_Controller {
         }
     }
 
+    /**
+     * @author Iffat Nizu
+     * @package directory
+     * @access public
+     * @name function logout()
+     * @param 
+     * @uses for vendor's logout 
+     * @return  
+     */
     public function logout() {
         $session['_userEmail'] = FALSE;
         $session['_userId'] = FALSE;
@@ -261,6 +366,15 @@ class Vendor extends CI_Controller {
         echo '1';
     }
 
+    /**
+     * @author Iffat Nizu
+     * @package directory
+     * @access public
+     * @name function updatepassword()
+     * @param 
+     * @uses for vendor's update password 
+     * @return  
+     */
     public function updatepassword() {
         if ($this->session->userdata('_userLogin')) {
             $up = $this->model_vendor->updatepassword($this->session->userdata('_userId'));
@@ -272,6 +386,15 @@ class Vendor extends CI_Controller {
         }
     }
 
+    /**
+     * @author Iffat Nizu
+     * @package directory
+     * @access public
+     * @name function login()
+     * @param 
+     * @uses for vendor's login 
+     * @return  
+     */
     public function login() {
         if (!$this->session->userdata('_userLogin')) {
             $data['title'] = 'Welcome to Vendor Panel';
@@ -285,6 +408,15 @@ class Vendor extends CI_Controller {
         }
     }
 
+    /**
+     * @author Iffat Nizu
+     * @package directory
+     * @access public
+     * @name function dashboard()
+     * @param 
+     * @uses for showing dashboard 
+     * @return  
+     */
     public function dashboard() {
         if ($this->session->userdata('_userLogin')) {
             $data['title'] = 'Welcome to Vendor Panel';
@@ -292,9 +424,6 @@ class Vendor extends CI_Controller {
             $serviceArray = array('3', '4');
 
             $test = $this->model_vendor->sendQuoteMailToVendor($serviceArray);
-
-            //debugPrint($test);
-
             $vendor['header'] = $this->load->view(Vendorconfig::COMPONENT_VENDOR_HEADER, $data, TRUE);
             $vendor['navigation'] = $this->load->view(Vendorconfig::COMPONENT_VENDOR_NAVIGATION, '', TRUE);
             $vendor['content'] = $this->load->view(Vendorconfig::COMPONENT_VENDOR_DASHBOARD, '', TRUE);
@@ -305,6 +434,15 @@ class Vendor extends CI_Controller {
         }
     }
 
+    /**
+     * @author Iffat Nizu
+     * @package directory
+     * @access public
+     * @name function profile()
+     * @param 
+     * @uses for showing vendor's profile
+     * @return  
+     */
     public function profile() {
         if ($this->session->userdata('_userLogin')) {
             $data['userdata'] = $this->model_vendor->getUserdata($this->session->userdata('_userId'));
@@ -319,6 +457,15 @@ class Vendor extends CI_Controller {
         }
     }
 
+    /**
+     * @author Iffat Nizu
+     * @package directory
+     * @access public
+     * @name function editprofile()
+     * @param 
+     * @uses for editing vendor's profile 
+     * @return  
+     */
     public function editprofile() {
         if ($this->session->userdata('_userLogin')) {
             if (isset($_POST['vendorsubmit'])) {
@@ -329,7 +476,6 @@ class Vendor extends CI_Controller {
                 $this->form_validation->set_rules('txtzip', 'Zip Code', 'required|integer|min_length[4]');
 
                 if ($this->form_validation->run() == TRUE) {
-//            debugPrint($_POST);
                     $this->model_vendor->updateProfile($this->session->userdata('_userId'));
                 }
             }
@@ -348,6 +494,15 @@ class Vendor extends CI_Controller {
         }
     }
 
+    /**
+     * @author Iffat Nizu
+     * @package directory
+     * @access public
+     * @name function changepassword()
+     * @param 
+     * @uses for vendor's changing password 
+     * @return  
+     */
     public function changepassword() {
         if ($this->session->userdata('_userLogin')) {
             $data['title'] = 'Profile of ' . $this->session->userdata('_userName');
@@ -361,6 +516,15 @@ class Vendor extends CI_Controller {
         }
     }
 
+    /**
+     * @author Iffat Nizu
+     * @package directory
+     * @access public
+     * @name function submitReview()
+     * @param 
+     * @uses for submitting review
+     * @return  
+     */
     public function submitReview() {
         if ($this->session->userdata('userLogin')) {
             $up = $this->model_vendor->submitReview($this->session->userdata('userId'));
@@ -372,6 +536,15 @@ class Vendor extends CI_Controller {
         }
     }
 
+    /**
+     * @author Iffat Nizu
+     * @package directory
+     * @access public
+     * @name function addToFavorite()
+     * @param 
+     * @uses for adding to favorite 
+     * @return  
+     */
     public function addToFavorite() {
         if ($this->session->userdata('userLogin')) {
             if ($_POST['status'] == '1') {
@@ -392,6 +565,15 @@ class Vendor extends CI_Controller {
         }
     }
 
+    /**
+     * @author Iffat Nizu
+     * @package directory
+     * @access public
+     * @name function submitRating()
+     * @param 
+     * @uses for submitting rating 
+     * @return  
+     */
     public function submitRating() {
         if ($this->session->userdata('userLogin')) {
             $up = $this->model_vendor->submitRating($this->session->userdata('userId'));
@@ -403,7 +585,16 @@ class Vendor extends CI_Controller {
         }
     }
 
-    public function stateVendors($stateId=0) {
+    /**
+     * @author Iffat Nizu
+     * @package directory
+     * @access public
+     * @name function stateVendors()
+     * @param int $stateId
+     * @uses for showing state vendor list 
+     * @return  
+     */
+    public function stateVendors($stateId = 0) {
         if (is_numeric($stateId) && $stateId == true) {
             $data['title'] = 'State Vendor List ';
             $data['stateName'] = getStateNameById($stateId);
@@ -417,6 +608,15 @@ class Vendor extends CI_Controller {
         }
     }
 
+    /**
+     * @author Iffat Nizu
+     * @package directory
+     * @access public
+     * @name function reportViolation()
+     * @param 
+     * @uses for report violation for messaging 
+     * @return  
+     */
     public function reportViolation() {
         if ($this->session->userdata('_userLogin')) {
             $report = $this->model_vendor->reportViolation($this->session->userdata('_userId'), cpr_decode($_POST['eid']));
@@ -425,6 +625,15 @@ class Vendor extends CI_Controller {
         }
     }
 
+    /**
+     * @author Iffat Nizu
+     * @package directory
+     * @access public
+     * @name function ratingReview()
+     * @param 
+     * @uses for view rating review 
+     * @return  
+     */
     public function ratingReview() {
         if ($this->session->userdata('_userLogin')) {
             $data['title'] = 'View Rating Review';
@@ -439,6 +648,15 @@ class Vendor extends CI_Controller {
         }
     }
 
+    /**
+     * @author Iffat Nizu
+     * @package directory
+     * @access public
+     * @name function sendReportForRating()
+     * @param 
+     * @uses for send report for rating 
+     * @return  
+     */
     public function sendReportForRating() {
         if ($this->session->userdata('_userLogin')) {
             if (isset($_POST['submit'])) {
@@ -449,6 +667,15 @@ class Vendor extends CI_Controller {
         }
     }
 
+    /**
+     * @author Iffat Nizu
+     * @package directory
+     * @access public
+     * @name function changeLogo()
+     * @param 
+     * @uses for change vendor logo 
+     * @return  
+     */
     public function changeLogo() {
         if ($this->session->userdata('_userLogin')) {
 
@@ -480,11 +707,19 @@ class Vendor extends CI_Controller {
             redirect(site_url());
         }
     }
-    
+
+    /**
+     * @author Iffat Nizu
+     * @package directory
+     * @access public
+     * @name function submitRatingAjax()
+     * @param 
+     * @uses for submit rating using ajax 
+     * @return  
+     */
     public function submitRatingAjax() {
         if ($this->session->userdata('userLogin')) {
             $up = $this->model_vendor->submitRatingAjax($this->session->userdata('userId'));
-            
             echo $up;
         }
     }

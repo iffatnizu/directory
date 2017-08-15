@@ -1,5 +1,15 @@
 <?php
 
+/**
+ * @author Iffat Nizu
+ * @package directory
+ * @name function debugPrint()
+ * @param string $object
+ * @param string $title
+ * @param boolean $isMarkup
+ * @uses for debug print
+ * @return  
+ */
 function debugPrint($object, $title = "", $isMarkup = false) {
     echo '<font color="red">Debug <<< START';
     if (!empty($title)) {
@@ -15,6 +25,14 @@ function debugPrint($object, $title = "", $isMarkup = false) {
     echo 'END >>></font>';
 }
 
+/**
+ * @author Iffat Nizu
+ * @package directory
+ * @name function getEventInfoDetailsId()
+ * @param int $id
+ * @uses for getting event info detail id by id
+ * @return int 
+ */
 function getStateByCountryId($id) {
     $CI = &get_instance();
     $CI->load->model('model_common');
@@ -64,7 +82,6 @@ function getUserDetails($id) {
 }
 
 /**
- * @author <akram@corepiler.com>
  * @package directory
  * @access public
  * @name function c()
@@ -77,7 +94,6 @@ function c() {
 }
 
 /**
- * @author <akram@corepiler.com>
  * @package directory
  * @access public
  * @name function toBase()
@@ -110,7 +126,7 @@ function toBase($num) {
 }
 
 /**
- * @author <akram@corepiler.com>
+ * @author Iffat Nizu
  * @package directory
  * @access public
  * @name function to10()
@@ -137,7 +153,7 @@ function to10($num) {
 }
 
 /**
- * @author <akram@corepiler.com>
+ * @author Iffat Nizu
  * @package directory
  * @access public
  * @name function getFAQ()
@@ -283,7 +299,7 @@ function getAllDrinksType() {
 }
 
 /**
- * @author Akram <akram@corepiler.com>
+ * @author Iffat Nizu
  * @uses  decode the hex string to its orginal formate
  * @access public 
  * @param type $x
@@ -297,7 +313,7 @@ function cpr_decode($x) {
 }
 
 /**
- * @author Akram <akram@corepiler.com>
+ * @author Iffat Nizu
  * @uses  encode the string to hex formate
  * @access public 
  * @param type $x
@@ -353,7 +369,7 @@ function allmonth() {
 }
 
 /**
- * @author Akram <akram@corepiler.com>
+ * @author Iffat Nizu
  * @uses  generate rating star using rating point 
  * @access public 
  * @param type $totalvalue

@@ -9,6 +9,12 @@ class Model_Catering extends CI_Model {
         parent::__construct();
     }
 
+    /**
+     * @method name User's Sign Up
+     * @param none 
+     * Description  
+     * @return None 
+     */
     public function insertCatering() {
         $data[DBConfig::TABLE_EVENT_ATT_EVENT_DATE] = strtotime($this->input->post(DBConfig::TABLE_EVENT_ATT_EVENT_DATE));
         $data[DBConfig::TABLE_EVENT_ATT_CITY_ID] = $this->input->post(DBConfig::TABLE_EVENT_ATT_CITY_ID, TRUE);
@@ -34,18 +40,42 @@ class Model_Catering extends CI_Model {
         }
     }
 
+    /**
+     * @method name User's Sign Up
+     * @param none 
+     * Description  
+     * @return None 
+     */
     public function getAllService() {
         return $this->db->get(DBConfig::TABLE_SERVICE)->result_array();
     }
 
+    /**
+     * @method name User's Sign Up
+     * @param none 
+     * Description  
+     * @return None 
+     */
     public function getBudgetPerPerson() {
         return $this->db->get(DBConfig::TABLE_BUDGET_PER_PERSON)->result_array();
     }
 
+    /**
+     * @method name User's Sign Up
+     * @param none 
+     * Description  
+     * @return None 
+     */
     public function getAllFoodType() {
         return $this->db->get(DBConfig::TABLE_FOOD_TYPE)->result_array();
     }
 
+    /**
+     * @method name User's Sign Up
+     * @param none 
+     * Description  
+     * @return None 
+     */
     public function getEventDetails($eventId = '') {
         $this->db->where(DBConfig::TABLE_EVENT_ATT_EVENT_ID, $eventId);
         $query = $this->db->get(DBConfig::TABLE_EVENT);
@@ -54,6 +84,12 @@ class Model_Catering extends CI_Model {
         }
     }
 
+    /**
+     * @method name User's Sign Up
+     * @param none 
+     * Description  
+     * @return None 
+     */
     public function insertFoodPreference($eventId = 0) {
         $data[DBConfig::TABLE_FOOD_PREFERENCE_ATT_SERVICE_ID] = $this->input->post(DBConfig::TABLE_FOOD_PREFERENCE_ATT_SERVICE_ID);
         $data[DBConfig::TABLE_FOOD_PREFERENCE_ATT_BUDGET_PET_PERSON_ID] = $this->input->post(DBConfig::TABLE_FOOD_PREFERENCE_ATT_BUDGET_PET_PERSON_ID, TRUE);
@@ -68,8 +104,6 @@ class Model_Catering extends CI_Model {
         $data[DBConfig::TABLE_FOOD_PREFERENCE_ATT_FOOD_TYPE] = $foodTypes;
         $data[DBConfig::TABLE_FOOD_PREFERENCE_ATT_EVENT_ID] = $eventId;
 
-//        debugPrint($data);
-//        exit();
         $insert = $this->db->insert(DBConfig::TABLE_FOOD_PREFERENCE, $data);
         if ($insert) {
             if ($_POST['eventLocation'] == '1') {

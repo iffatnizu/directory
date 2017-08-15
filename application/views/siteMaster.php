@@ -40,14 +40,17 @@
         </div>
         <div  class="container">
             <?php
+            // Call header section
             echo (isset($header)) ? $header : '';
             ?>
 
             <?php
+            // Call Content of the page
             echo (isset($content)) ? $content : '';
             ?>
 
             <?php
+            // Call foter section
             echo (isset($footer)) ? $footer : '';
             ?>
         </div>

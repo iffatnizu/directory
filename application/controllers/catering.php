@@ -1,12 +1,18 @@
 <?php
 
 if (!defined('BASEPATH')) {
-    exit('No direct script access allowed');
+    exit("No direct script access allowed");
 }
 
 require_once 'siteConfig.php';
 require_once 'dbConfig.php';
 
+/**
+ * This class does Catering operations
+ * @author Iffat Nizu
+ * @requires siteconfig.php & dbconfig.php files
+ * Functions list - index, getquotes, foodpreference, fewquestions, otherservices
+ */
 class Catering extends CI_Controller {
 
     public function __construct() {
@@ -16,10 +22,28 @@ class Catering extends CI_Controller {
         $this->load->model('model_catering');
     }
 
+    /**
+     * @author Iffat Nizu
+     * @package directory
+     * @access public
+     * @name function index()
+     * @param 
+     * @uses Index method for catering controller 
+     * @return None 
+     */
     public function index() {
         $this->getquotes();
     }
 
+    /**
+     * @author Iffat Nizu
+     * @package directory
+     * @access public
+     * @param 
+     * @name function getquotes()
+     * @uses for get Quotes form customer 
+     * @return  
+     */
     public function getquotes() {
         $this->form_validation->set_error_delimiters('<font color="red">', '</font>');
         $this->form_validation->set_rules(DbConfig::TABLE_EVENT_ATT_EVENT_DATE, 'Event Date', 'required');
@@ -44,6 +68,15 @@ class Catering extends CI_Controller {
         $this->load->view(siteConfig::SITE_MASTER, $page);
     }
 
+    /**
+     * @author Iffat Nizu
+     * @package directory
+     * @access public
+     * @param Int $eventId
+     * @name foodpreference()
+     * @uses for event food preference 
+     * @return  
+     */
     public function foodpreference($eventId = '') {
         $this->form_validation->set_error_delimiters('<font color="red">', '</font>');
         $this->form_validation->set_rules(DbConfig::TABLE_FOOD_PREFERENCE_ATT_SERVICE_ID, 'Service', 'required');
@@ -55,7 +88,6 @@ class Catering extends CI_Controller {
         $this->form_validation->set_message('required', ' %s Required');
 
         if ($this->form_validation->run() == TRUE) {
-//            debugPrint($_POST);
             if ($eventId != '') {
                 $this->model_catering->insertFoodPreference($eventId);
             }
@@ -72,6 +104,15 @@ class Catering extends CI_Controller {
         $this->load->view(siteConfig::SITE_MASTER, $page);
     }
 
+    /**
+     * @author Iffat Nizu
+     * @package directory
+     * @access public
+     * @name function fewquestions()
+     * @param int $eventId
+     * @uses for Question about food preference
+     * @return  
+     */
     public function fewquestions($eventId = '') {
         $this->form_validation->set_error_delimiters('<font color="red">', '</font>');
         $this->form_validation->set_rules(DbConfig::TABLE_FOOD_PREFERENCE_ATT_SERVICE_ID, 'Service', 'required');
@@ -80,7 +121,6 @@ class Catering extends CI_Controller {
         $this->form_validation->set_message('required', ' %s Required');
 
         if ($this->form_validation->run() == TRUE) {
-//            debugPrint($_POST);
             $this->model_catering->insertFoodPreference($eventId);
         }
 
@@ -94,6 +134,15 @@ class Catering extends CI_Controller {
         $this->load->view(siteConfig::SITE_MASTER, $page);
     }
 
+    /**
+     * @author Iffat Nizu
+     * @package directory
+     * @access public
+     * @name function otherservices()
+     * @param int $eventId
+     * @uses for Question about other services
+     * @return  
+     */
     public function otherservices($eventId = '') {
         $this->form_validation->set_error_delimiters('<font color="red">', '</font>');
         $this->form_validation->set_rules(DbConfig::TABLE_FOOD_PREFERENCE_ATT_SERVICE_ID, 'Service', 'required');
@@ -105,7 +154,6 @@ class Catering extends CI_Controller {
         $this->form_validation->set_message('required', ' %s Required');
 
         if ($this->form_validation->run() == TRUE) {
-//            debugPrint($_POST);
             $this->model_catering->insertFoodPreference($eventId);
         }
         $data['allCategory'] = getAllCategory();

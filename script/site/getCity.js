@@ -1,5 +1,11 @@
 var directory = {
     
+    /**
+     * Description
+     * @method cityByState
+     * @param {} stateId
+     * @return 
+     */
     cityByState:function(stateId)
     {
         $("select[name=cityId]").html("");
@@ -9,6 +15,12 @@ var directory = {
             data:{
                 "stateId":stateId
             },
+            /**
+             * Description
+             * @method success
+             * @param {} res
+             * @return 
+             */
             success:function(res)
             {
                 $("select[name=cityId]").prepend('<option value="">Select City</option>');

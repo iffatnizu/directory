@@ -1,5 +1,11 @@
 var directory = {
     
+    /**
+     * Description
+     * @method getVendorByState
+     * @param {} state
+     * @return 
+     */
     getVendorByState:function(state)
     {
         var service = $("input[name=category]:checked").val();

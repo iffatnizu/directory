@@ -4,11 +4,21 @@ var imgFalse = base_url+'assets/images/false.png';
 var imgTrue = base_url+'assets/images/true.png';
 
 //this function runs when the page is loaded, put all your other onload stuff in here too.
+/**
+ * Description
+ * @method init
+ * @return 
+ */
 function init() {
 	
 	replaceChecks();
 }
 
+/**
+ * Description
+ * @method replaceChecks
+ * @return 
+ */
 function replaceChecks() {
 	
 	//get all the input fields on the page
@@ -44,6 +54,12 @@ function replaceChecks() {
 }
 
 //change the checkbox status and the replacement image
+/**
+ * Description
+ * @method checkChange
+ * @param {} i
+ * @return 
+ */
 function checkChange(i) {
 
 	if(inputs[i].checked) {

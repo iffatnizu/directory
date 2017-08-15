@@ -4,12 +4,24 @@ var isUserClick = true;
 var userLoadId;
 var directory = {
 
+    /**
+     * Login function
+     * @method doLogin
+     * @param {} form
+     * @return Literal
+     */
     doLogin: function (form) {
         $(".loginstatus").html("Verifying credential....");
         $.ajax({
             type: "POST",
             url: base_url + "vendor/doLogin",
             data: form.serialize() + "&signin=1",
+            /**
+             * Login success function
+             * @method success
+             * @param {} res
+             * @return 
+             */
             success: function (res) {
                 if (res === "0") {
                     $(".loginstatus").html("Incorrect usernname and password");
@@ -25,12 +37,23 @@ var directory = {
         });
         return false;
     },
+    /**
+     * Logout Function
+     * @method logout
+     * @return 
+     */
     logout: function () {
         var r = confirm("Are you sure ?");
         if (r === true)
             $.ajax({
                 type: "GET",
                 url: base_url + "vendor/logout",
+                /**
+                 * Description
+                 * @method success
+                 * @param {} res
+                 * @return 
+                 */
                 success: function (res) {
                     if (res === "1") {
                         location.reload();
@@ -38,6 +61,12 @@ var directory = {
                 }
             });
     },
+    /**
+     * Change password function
+     * @method changepassword
+     * @param {} form
+     * @return Literal
+     */
     changepassword: function (form) {
         var oldpass = form.find("input[name=oldpassword]").val();
         var newpass = form.find("input[name=newpassword]").val();
@@ -79,6 +108,12 @@ var directory = {
                     "oldpass": oldpass,
                     "newpass": newpass
                 },
+                /**
+                 * Change password sucess function
+                 * @method success
+                 * @param {} res
+                 * @return 
+                 */
                 success: function (res) {
                     if (res === "1") {
                         $(".chpstatus").html("Password successfully updated");
@@ -95,6 +130,12 @@ var directory = {
         }
         return false;
     },
+    /**
+     * Get city by state
+     * @method cityByState
+     * @param {} stateId
+     * @return 
+     */
     cityByState: function (stateId) {
         $("select[name=cityId]").html("");
         $.ajax({
@@ -103,6 +144,12 @@ var directory = {
             data: {
                 "stateId": stateId
             },
+            /**
+             * Sucess function for get city by state
+             * @method success
+             * @param {} res
+             * @return 
+             */
             success: function (res) {
                 $("select[name=cityId]").prepend("<option value= \" \">Select City</option>");
                 var object = $.parseJSON(res);
@@ -112,12 +159,28 @@ var directory = {
             }
         });
     },
+    /**
+     * Subscribe function
+     * @method subscribeNow
+     * @return 
+     */
     subscribeNow: function () {
         $("div[id=boxes]").show();
     },
+    /**
+     * Unsubscribe function
+     * @method removeSubscribe
+     * @return 
+     */
     removeSubscribe: function () {
         $("div[id=boxes]").hide();
     },
+    /**
+     * Send subcribe 
+     * @method sendSubscribeFormData
+     * @param {} form
+     * @return Literal
+     */
     sendSubscribeFormData: function (form) {
         var name = form.find("input[name=txtFirstName]").val();
         var email = form.find("input[name=txtEmail]").val();
@@ -148,6 +211,12 @@ var directory = {
                 type: "POST",
                 url: base_url + "user/subscribe",
                 data: form.serialize() + "&subscriber=1",
+                /**
+                 * Description
+                 * @method success
+                 * @param {} res
+                 * @return 
+                 */
                 success: function (res) {
                     if (res === "1") {
                         $("span[id=successmsg]").html("Your subscription successfully completed");
@@ -161,6 +230,14 @@ var directory = {
 
         return false;
     },
+    /**
+     * Description
+     * @method bookmarkservice
+     * @param {} serviceid
+     * @param {} eventsid
+     * @param {} servicelistId
+     * @return 
+     */
     bookmarkservice: function (serviceid, eventsid, servicelistId) {
         $.ajax({
             type: "GET",
@@ -170,6 +247,12 @@ var directory = {
                 "servicelistId": servicelistId
             },
             url: base_url + "events/bookmarkservice",
+            /**
+             * Description
+             * @method success
+             * @param {} res
+             * @return 
+             */
             success: function (res) {
                 if (res == "1") {
                     location.reload();
@@ -177,6 +260,14 @@ var directory = {
             }
         });
     },
+    /**
+     * Description
+     * @method removebookmarkservice
+     * @param {} serviceid
+     * @param {} eventsid
+     * @param {} servicelistId
+     * @return 
+     */
     removebookmarkservice: function (serviceid, eventsid, servicelistId) {
         $.ajax({
             type: "GET",
@@ -187,6 +278,12 @@ var directory = {
                 "submit": "1"
             },
             url: base_url + "events/removebookmarkservice",
+            /**
+             * Description
+             * @method success
+             * @param {} res
+             * @return 
+             */
             success: function (res) {
                 if (res === "1") {
                     location.reload();
@@ -194,13 +291,29 @@ var directory = {
             }
         });
     },
+    /**
+     * Description
+     * @method showReviewArea
+     * @param {} vendorId
+     * @return 
+     */
     showReviewArea: function (vendorId) {
         var reviewArea = '<tr><td>Rating</td><td>1<input checked="checked" type="radio" name="rating" value="1"/>&nbsp;2<input type="radio" name="rating" value="2"/>&nbsp;3<input type="radio" name="rating" value="3"/>&nbsp;4<input type="radio" name="rating" value="4"/>&nbsp;5<input type="radio" name="rating" value="5"/>&nbsp;</td></tr><tr><td>Write review</td><td><textarea name="reviewTxt" style="width: 480px; height: 168px;"></textarea><br clear="all"/><input onclick="directory.submitReview()" value="Submit review" type="button" name="reviewBtn" class="btn btn-info"/><input value="' + vendorId + '" type="hidden" name="vendorId" /> <a onclick="directory.removeReviewArea()" href="javascript:;" class="btn btn-danger btn-small">Close</a></td></tr>';
         $("table[id=reviewTbl]").html(reviewArea).show();
     },
+    /**
+     * Description
+     * @method removeReviewArea
+     * @return 
+     */
     removeReviewArea: function () {
         $("table[id=reviewTbl]").slideUp("slow").empty();
     },
+    /**
+     * Description
+     * @method submitReview
+     * @return 
+     */
     submitReview: function () {
         var reviewTxt = $("textarea[name=reviewTxt]").val();
         var vendorId = $("input[name=vendorId]").val();
@@ -218,6 +331,12 @@ var directory = {
                     "submit": "1"
                 },
                 url: base_url + "vendor/submitReview/",
+                /**
+                 * Description
+                 * @method success
+                 * @param {} res
+                 * @return 
+                 */
                 success: function (res) {
                     if (res === "1") {
                         location.reload();
@@ -229,6 +348,13 @@ var directory = {
             });
         }
     },
+    /**
+     * Description
+     * @method addToFavorite
+     * @param {} vendorId
+     * @param {} status
+     * @return 
+     */
     addToFavorite: function (vendorId, status) {
         var ans = confirm("Are you sure?");
         if (ans) {
@@ -240,6 +366,12 @@ var directory = {
                     "submit": "1"
                 },
                 url: base_url + "vendor/addToFavorite/",
+                /**
+                 * Description
+                 * @method success
+                 * @param {} res
+                 * @return 
+                 */
                 success: function (res) {
                     if (res == "1") {
                         location.reload();
@@ -248,6 +380,11 @@ var directory = {
             });
         }
     },
+    /**
+     * Description
+     * @method sendMessageToUser
+     * @return 
+     */
     sendMessageToUser: function () {
         var error = 0;
         var msgSubject = $("input[name=msgSubject]").val();
@@ -284,6 +421,12 @@ var directory = {
                     "eid": msgEid,
                     "submit": "1"
                 },
+                /**
+                 * Description
+                 * @method success
+                 * @param {} res
+                 * @return 
+                 */
                 success: function (res) {
                     if (res === "0") {
                         alert("You are not authorized to send message");
@@ -298,10 +441,21 @@ var directory = {
             });
         }
     },
+    /**
+     * Description
+     * @method clearMessageArea
+     * @return 
+     */
     clearMessageArea: function () {
         $("input[name=msgSubject]").val("");
         $("div[id=pageContent]").html("");
     },
+    /**
+     * Description
+     * @method getAllMessageById
+     * @param {} id
+     * @return 
+     */
     getAllMessageById: function (id) {
         $(".msgTitleBox ul li").css({
             "background": "#F7F7F7"
@@ -317,6 +471,12 @@ var directory = {
                 "eid": id,
                 "submit": "1"
             },
+            /**
+             * Description
+             * @method success
+             * @param {} res
+             * @return 
+             */
             success: function (res) {
                 if (res !== "") {
                     $("div[id=reportArea]").html('<a onclick="directory.vendorReportViolation(\'' + id + '\',\'user\')" href="javascript:;"><i class="icon-minus-sign"></i><br/>Report</a>');
@@ -334,6 +494,12 @@ var directory = {
             }
         });
     },
+    /**
+     * Description
+     * @method getUserMessageById
+     * @param {} id
+     * @return 
+     */
     getUserMessageById: function (id) {
         $(".msgTitleBox ul li").css({
             "background": "#F7F7F7"
@@ -349,6 +515,12 @@ var directory = {
                 "eid": id,
                 "submit": "1"
             },
+            /**
+             * Description
+             * @method success
+             * @param {} res
+             * @return 
+             */
             success: function (res) {
                 if (res !== "") {
 
@@ -367,6 +539,11 @@ var directory = {
             }
         });
     },
+    /**
+     * Description
+     * @method intervalForLoadMessage
+     * @return 
+     */
     intervalForLoadMessage: function () {
         $.ajax({
             type: "GET",
@@ -375,6 +552,12 @@ var directory = {
                 "eid": loadId,
                 "submit": "1"
             },
+            /**
+             * Description
+             * @method success
+             * @param {} res
+             * @return 
+             */
             success: function (res) {
                 if (res !== "") {
                     $("ul[id=msgList]").html("");
@@ -387,6 +570,11 @@ var directory = {
             }
         });
     },
+    /**
+     * Description
+     * @method intervalForLoadUserMessage
+     * @return 
+     */
     intervalForLoadUserMessage: function () {
         $.ajax({
             type: "GET",
@@ -395,6 +583,12 @@ var directory = {
                 "eid": userLoadId,
                 "submit": "1"
             },
+            /**
+             * Description
+             * @method success
+             * @param {} res
+             * @return 
+             */
             success: function (res) {
                 if (res !== "") {
                     $("ul[id=msgList]").html("");
@@ -407,9 +601,20 @@ var directory = {
             }
         });
     },
+    /**
+     * Description
+     * @method forceLoadMessage
+     * @return 
+     */
     forceLoadMessage: function () {
         $("a[class=pm_1]").trigger("click");
     },
+    /**
+     * Description
+     * @method sendReply
+     * @param {} eid
+     * @return 
+     */
     sendReply: function (eid) {
         var replyMsg = $("div[class=sendReply_" + eid + "]").html();
         if (replyMsg === "") {
@@ -425,6 +630,12 @@ var directory = {
                     "eid": eid,
                     "submit": "1"
                 },
+                /**
+                 * Description
+                 * @method success
+                 * @param {} res
+                 * @return 
+                 */
                 success: function (res) {
                     var obj = $.parseJSON(res);
                     var tag = '<li id="" class="' + obj.cssclass + '"><h6><i class="icon-user"></i> ' + obj.username + ' Says :</h6><p>' + obj.messageDescription + '</p></li><br clear="all"/>';
@@ -434,6 +645,12 @@ var directory = {
             });
         }
     },
+    /**
+     * Description
+     * @method sendUserReply
+     * @param {} eid
+     * @return 
+     */
     sendUserReply: function (eid) {
         var replyMsg = $("div[class=sendReply_" + eid + "]").html();
         if (replyMsg === "") {
@@ -449,6 +666,12 @@ var directory = {
                     "eid": eid,
                     "submit": "1"
                 },
+                /**
+                 * Description
+                 * @method success
+                 * @param {} res
+                 * @return 
+                 */
                 success: function (res) {
                     var obj = $.parseJSON(res);
                     var tag = '<li id="" class="' + obj.cssclass + '"><h6><i class="icon-user"></i> ' + obj.username + ' Says :</h6><p>' + obj.messageDescription + '</p></li><br clear="all"/>';
@@ -458,6 +681,13 @@ var directory = {
             });
         }
     },
+    /**
+     * Description
+     * @method submitRating
+     * @param {} vendorId
+     * @param {} rating
+     * @return 
+     */
     submitRating: function (vendorId, rating) {
         var ans = confirm("Are you sure?");
         if (ans) {
@@ -468,6 +698,12 @@ var directory = {
                     "rating": rating
                 },
                 url: base_url + "vendor/submitRating/",
+                /**
+                 * Description
+                 * @method success
+                 * @param {} res
+                 * @return 
+                 */
                 success: function (res) {
                     if (res === "1") {
                         alert("Customer Review Successfully Added");
@@ -479,6 +715,12 @@ var directory = {
             });
         }
     },
+    /**
+     * Description
+     * @method blockedVendor
+     * @param {} email
+     * @return 
+     */
     blockedVendor: function (email) {
         var ans = confirm("Are you sure want to block?");
         if (ans) {
@@ -489,6 +731,12 @@ var directory = {
                     "submit": "1"
                 },
                 url: base_url + "administrator/blockedVendor/",
+                /**
+                 * Description
+                 * @method success
+                 * @param {} res
+                 * @return 
+                 */
                 success: function (res) {
                     if (res === "1") {
                         alert("Successfully Blocked");
@@ -500,6 +748,12 @@ var directory = {
             });
         }
     },
+    /**
+     * Description
+     * @method blockedUser
+     * @param {} email
+     * @return 
+     */
     blockedUser: function (email) {
         var ans = confirm("Are you sure want to block?");
         if (ans) {
@@ -510,6 +764,12 @@ var directory = {
                     "submit": "1"
                 },
                 url: base_url + "administrator/blockedUser/",
+                /**
+                 * Description
+                 * @method success
+                 * @param {} res
+                 * @return 
+                 */
                 success: function (res) {
                     if (res === "1") {
                         alert("Successfully Blocked");
@@ -521,6 +781,12 @@ var directory = {
             });
         }
     },
+    /**
+     * Description
+     * @method unblockedVendor
+     * @param {} email
+     * @return 
+     */
     unblockedVendor: function (email) {
         var ans = confirm("Are you sure want to block?");
         if (ans) {
@@ -531,6 +797,12 @@ var directory = {
                     "submit": "1"
                 },
                 url: base_url + "administrator/unblockedVendor/",
+                /**
+                 * Description
+                 * @method success
+                 * @param {} res
+                 * @return 
+                 */
                 success: function (res) {
                     if (res === "1") {
                         alert("Successfully Unblocked");
@@ -542,6 +814,12 @@ var directory = {
             });
         }
     },
+    /**
+     * Description
+     * @method unblockedUser
+     * @param {} email
+     * @return 
+     */
     unblockedUser: function (email) {
         var ans = confirm("Are you sure want to block?");
         if (ans) {
@@ -552,6 +830,12 @@ var directory = {
                     "submit": "1"
                 },
                 url: base_url + "administrator/unblockedUser/",
+                /**
+                 * Description
+                 * @method success
+                 * @param {} res
+                 * @return 
+                 */
                 success: function (res) {
                     if (res === "1") {
                         alert("Successfully Unblocked");
@@ -563,6 +847,12 @@ var directory = {
             });
         }
     },
+    /**
+     * Description
+     * @method getVendorByState
+     * @param {} state
+     * @return 
+     */
     getVendorByState: function (state) {
         var service = $("input[name=category]:checked").val();
         if (service !== undefined) {
@@ -577,6 +867,13 @@ var directory = {
             alert("Please select at least one service");
         }
     },
+    /**
+     * Description
+     * @method userReportViolation
+     * @param {} id
+     * @param {} type
+     * @return 
+     */
     userReportViolation: function (id, type) {
         var ans = confirm("Are you sure want to report this " + type);
         if (ans) {
@@ -587,6 +884,12 @@ var directory = {
                     "submit": "1"
                 },
                 url: base_url + "user/reportViolation/",
+                /**
+                 * Description
+                 * @method success
+                 * @param {} res
+                 * @return 
+                 */
                 success: function (res) {
                     if (res === "1") {
                         alert("Report Successfully Sent");
@@ -600,6 +903,13 @@ var directory = {
             });
         }
     },
+    /**
+     * Description
+     * @method vendorReportViolation
+     * @param {} id
+     * @param {} type
+     * @return 
+     */
     vendorReportViolation: function (id, type) {
         var ans = confirm("Are you sure want to report this " + type);
         if (ans) {
@@ -610,6 +920,12 @@ var directory = {
                     "submit": "1"
                 },
                 url: base_url + "vendor/reportViolation/",
+                /**
+                 * Description
+                 * @method success
+                 * @param {} res
+                 * @return 
+                 */
                 success: function (res) {
                     if (res === "1") {
                         alert("Report Successfully Sent");
@@ -623,6 +939,12 @@ var directory = {
             });
         }
     },
+    /**
+     * Description
+     * @method updateVendorRatingReview
+     * @param {} id
+     * @return 
+     */
     updateVendorRatingReview: function (id) {
         var rating = $("input[name=rating_" + id + "]:checked").val();
         var review = $("textarea[name=review_" + id + "]").val();
@@ -642,6 +964,12 @@ var directory = {
                         "submit": "1"
                     },
                     url: base_url + "user/updateVendorRatingReview/",
+                    /**
+                     * Description
+                     * @method success
+                     * @param {} res
+                     * @return 
+                     */
                     success: function (res) {
                         if (res === "1") {
                             alert("Rating Successfully Updated");
@@ -654,10 +982,22 @@ var directory = {
             }
         }
     },
+    /**
+     * Description
+     * @method reportTheRating
+     * @param {} id
+     * @return 
+     */
     reportTheRating: function (id) {
         var htmlElm = '<div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button><h3 id="myModalLabel">Report this rating! are you sure ?</h3></div><div class="modal-body"><p>Why you going to report this rating! write a short note</p><input type="hidden" name="ratingId" value="' + id + '"/><textarea id="" name="reportReason_' + id + '" style="height: 147px;width: 513px;"></textarea></div><div class="modal-footer"><button class="btn" data-dismiss="modal" aria-hidden="true">Close</button><button onclick="directory.sendReportForRating(\'' + id + '\')" class="btn btn-info">Send</button></div>';
         $("div[id=myModal]").html(htmlElm);
     },
+    /**
+     * Description
+     * @method sendReportForRating
+     * @param {} id
+     * @return 
+     */
     sendReportForRating: function (id) {
         var reason = $("textarea[name=reportReason_" + id + "]").val();
         if (reason !== "") {
@@ -669,6 +1009,12 @@ var directory = {
                     "submit": "1"
                 },
                 url: base_url + "vendor/sendReportForRating/",
+                /**
+                 * Description
+                 * @method success
+                 * @param {} res
+                 * @return 
+                 */
                 success: function (res) {
                     if (res === "1") {
                         alert("Report Successfully sent");
@@ -682,6 +1028,14 @@ var directory = {
             });
         }
     },
+    /**
+     * Description
+     * @method deleteRatingReview
+     * @param {} vId
+     * @param {} uId
+     * @param {} rId
+     * @return 
+     */
     deleteRatingReview: function (vId, uId, rId) {
         var ans = confirm("Are you sure want to delete this");
         if (ans) {
@@ -694,6 +1048,12 @@ var directory = {
                     "submit": "1"
                 },
                 url: base_url + "administrator/deleteRatingReview/",
+                /**
+                 * Description
+                 * @method success
+                 * @param {} res
+                 * @return 
+                 */
                 success: function (res) {
                     if (res === "1") {
                         alert("Rating Successfully deleted");
@@ -705,6 +1065,12 @@ var directory = {
             });
         }
     },
+    /**
+     * Report mark as invalid 
+     * @method reportMarkAsInvalid
+     * @param {} rId
+     * @return 
+     */
     reportMarkAsInvalid: function (rId) {
         var ans = confirm("Are you sure want to report this");
         if (ans) {
@@ -715,6 +1081,12 @@ var directory = {
                     "submit": "1"
                 },
                 url: base_url + "administrator/reportMarkAsInvalid/",
+                /**
+                 * Description
+                 * @method success
+                 * @param {} res
+                 * @return 
+                 */
                 success: function (res) {
                     if (res === "1") {
                         alert("Report Successfully Marked As Invalid");
@@ -728,6 +1100,9 @@ var directory = {
     }
 
 };
+
+//Document ready function for submit form
+
 $(document).ready(function () {
     $("form[class=form-signin]").submit(function () {
         return directory.doLogin($(this));

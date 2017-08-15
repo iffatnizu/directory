@@ -8,6 +8,13 @@ require_once 'siteConfig.php';
 require_once 'dbConfig.php';
 require_once APPPATH . 'directory/vendorconfig.php';
 
+/**
+ * This class does event's operations
+ * @author Iffat Nizu
+ * @requires siteconfig.php & dbconfig.php files
+ * Functions list - index, all, details, bookmarkservice, removebookmarkservice, bookmark
+ */
+
 class Events extends CI_Controller {
 
     public function Events() {
@@ -17,12 +24,29 @@ class Events extends CI_Controller {
         $this->load->helper('events');
     }
 
+    /**
+     * @author Iffat Nizu
+     * @package directory
+     * @access public
+     * @name function index()
+     * @param 
+     * @uses Index method for event controller 
+     * @return None 
+     */
     public function index() {
         $this->all();
     }
 
+    /**
+     * @author Iffat Nizu
+     * @package directory
+     * @access public
+     * @name function all()
+     * @param 
+     * @uses show all events
+     * @return None 
+     */
     public function all() {
-        //echo to10($vendorid);
         if ($this->session->userdata('_userLogin')) {
             $data['title'] = 'All events';
             $data['allevents'] = $this->model_events->getAllEvents();
@@ -36,6 +60,16 @@ class Events extends CI_Controller {
         }
     }
 
+    /**
+     * @author Iffat Nizu
+     * @package directory
+     * @access public
+     * @name function details()
+     * @param int $id 
+     * @param value 0
+     * @uses show event details
+     * @return  
+     */
     public function details($id=0) {
         if ($this->session->userdata('_userLogin')) {
             $eid = cpr_decode($id);
@@ -56,6 +90,15 @@ class Events extends CI_Controller {
         }
     }
 
+     /**
+     * @author Iffat Nizu
+     * @package directory
+     * @access public
+     * @name function bookmarkservice()
+     * @param 
+     * @uses for bookmark services
+     * @return 
+     */
     public function bookmarkservice() {
         if ($this->session->userdata('_userLogin')) {
             $eid = cpr_decode(($_GET['eventsInfoid']));
@@ -67,19 +110,36 @@ class Events extends CI_Controller {
         }
     }
 
+     /**
+     * @author Iffat Nizu
+     * @package directory
+     * @access public
+     * @name function removebookmarkservice()
+     * @param 
+     * @uses for remove bookmark
+     * @return None 
+     */
     public function removebookmarkservice() {
         if ($this->session->userdata('_userLogin')) {
             if (isset($_GET['submit'])) {
                 $eid = cpr_decode($_GET['eventsInfoid']);
                 if (is_numeric($eid)) {
                     $i = $this->model_events->removebookmarkservice();
-
                     echo $i;
                 }
             }
         }
     }
 
+     /**
+     * @author Iffat Nizu
+     * @package directory
+     * @access public
+     * @name function bookmark()
+     * @param 
+     * @uses show all bookmarks
+     * @return None 
+     */
     public function bookmark() {
         if ($this->session->userdata('_userLogin')) {
             $data['title'] = 'All bookmark';

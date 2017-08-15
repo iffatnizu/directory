@@ -1,9 +1,5 @@
 <?php
-/*
- * User class
- * Functions list - index, signup, checkEmail, subscribe, login, logout, favorite, index, getMessages, sendUserReply, editProfile, 
- *                 changePassword, checkOldPassword, reportViolation, manageRating, updateVendorRatingReview
- */
+
 if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
 }
@@ -11,24 +7,53 @@ if (!defined('BASEPATH')) {
 require_once 'siteConfig.php';
 require_once 'dbConfig.php';
 
+/**
+ * This class does all user's operation
+ * @author Iffat Nizu
+ * @requires siteconfig.php & dbconfig.php files
+ * Functions list - index, signup, checkEmail, subscribe, login, logout, favorite, index, getMessages, sendUserReply, editProfile, 
+ * changePassword, checkOldPassword, reportViolation, manageRating, updateVendorRatingReview
+ */
 class User extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
 
+        /**
+         * Load CI library function
+         */
         $this->load->library(array('form_validation', 'email', 'session'));
+
+        /**
+         * Load model files
+         */
         $this->load->model('model_user');
+
+        /**
+         * Load helper functions
+         */
         $this->load->helper('user');
     }
-/*
- *  Index function of User class
- *  Signup function default load
- *  No return
- */
+
+    /**
+     * @method type Index method
+     * @param none 
+     * Description  Index function call signup function
+     * @return None 
+     */
     public function index() {
         $this->signup();
     }
 
+    /**
+     * @author Iffat Nizu
+     * @package directory
+     * @access public
+     * @name function signup()
+     * @param 
+     * @uses for signup user 
+     * @return  
+     */
     public function signup() {
         if (!$this->session->userdata('userLogin')) {
             $this->form_validation->set_error_delimiters('<font color="red">', '</font>');
@@ -53,6 +78,16 @@ class User extends CI_Controller {
         }
     }
 
+    /**
+     * @author Iffat Nizu
+     * @package directory
+     * @access public
+     * @name function checkEmail()
+     * @param string $str
+     * @param value empty
+     * @uses for check email
+     * @return boolean 
+     */
     public function checkEmail($str = '') {
         $emailStatus = getEmailIsAlreadyInUse($str);
         if ($emailStatus == '1') {
@@ -63,6 +98,15 @@ class User extends CI_Controller {
         }
     }
 
+    /**
+     * @author Iffat Nizu
+     * @package directory
+     * @access public
+     * @name function subscribe()
+     * @param 
+     * @uses for subscribe 
+     * @return None 
+     */
     public function subscribe() {
         if (isset($_POST['subscriber'])) {
             $i = $this->model_user->insertSubscribeData();
@@ -72,24 +116,31 @@ class User extends CI_Controller {
         }
     }
 
+    /**
+     * @author Iffat Nizu
+     * @package directory
+     * @access public
+     * @name function login()
+     * @param 
+     * @uses for user login 
+     * @return  
+     */
     public function login() {
-        
+
         $sc['stepIncreament'] = FALSE;
         $sc['sizeofStep'] = FALSE;
         $sc['pagename'] = FALSE;
-        
+
         $this->session->unset_userdata($sc);
-        
+
         $this->form_validation->set_error_delimiters('<font color="red">', '</font>');
         $this->form_validation->set_rules(DbConfig::TABLE_USER_ATT_EMAIL, 'Email', 'required|valid_email');
         $this->form_validation->set_rules(DbConfig::TABLE_USER_ATT_PASSWORD, 'Password', 'required|min_length[6]');
         $this->form_validation->set_message('required', ' %s Required');
 
         if ($this->form_validation->run() == TRUE) {
-//            debugPrint($_POST);
             $this->model_user->checkLogin();
         }
-//        $data['allCategory'] = getAllCategory();
 
         $data['title'] = 'User Login';
 
@@ -99,6 +150,15 @@ class User extends CI_Controller {
         $this->load->view(siteConfig::SITE_MASTER, $page);
     }
 
+    /**
+     * @author Iffat Nizu
+     * @package directory
+     * @access public
+     * @name function logout()
+     * @param 
+     * @uses for user logout 
+     * @return  
+     */
     public function logout() {
         if ($this->session->userdata('userId')) {
             $data['userId'] = FALSE;
@@ -112,6 +172,15 @@ class User extends CI_Controller {
         }
     }
 
+    /**
+     * @author Iffat Nizu
+     * @package directory
+     * @access public
+     * @name function favorite()
+     * @param 
+     * @uses show favorite list 
+     * @return 
+     */
     public function favorite() {
         if ($this->session->userdata('userLogin')) {
             $data['favoriteList'] = $this->model_user->getFavoriteList($this->session->userdata('userId'));
@@ -127,6 +196,15 @@ class User extends CI_Controller {
         }
     }
 
+    /**
+     * @author Iffat Nizu
+     * @package directory
+     * @access public
+     * @name function inbox()
+     * @param 
+     * @uses for show user message inbox 
+     * @return  
+     */
     public function inbox() {
         if ($this->session->userdata('userLogin')) {
             $data['title'] = 'User Conversation Inbox';
@@ -140,6 +218,15 @@ class User extends CI_Controller {
         }
     }
 
+    /**
+     * @author Iffat Nizu
+     * @package directory
+     * @access public
+     * @name function getMessages()
+     * @param 
+     * @uses for get Messages
+     * @return 
+     */
     public function getMessages() {
         if ($this->session->userdata('userLogin')) {
             if (isset($_GET['submit'])) {
@@ -151,6 +238,15 @@ class User extends CI_Controller {
         }
     }
 
+    /**
+     * @author Iffat Nizu
+     * @package directory
+     * @access public
+     * @name function index()
+     * @param 
+     * @uses Index method for catering controller 
+     * @return None 
+     */
     public function sendUserReply() {
         if ($this->session->userdata('userLogin')) {
             $send = $this->model_user->sendUserReply($this->session->userdata('userId'));
@@ -161,6 +257,15 @@ class User extends CI_Controller {
         }
     }
 
+    /**
+     * @author Iffat Nizu
+     * @package directory
+     * @access public
+     * @name function editProfile()
+     * @param 
+     * @uses for user's profile edit 
+     * @return  
+     */
     public function editProfile() {
         if ($this->session->userdata('userLogin')) {
             $this->form_validation->set_error_delimiters('<font color="red">', '</font>');
@@ -184,6 +289,15 @@ class User extends CI_Controller {
         }
     }
 
+    /**
+     * @author Iffat Nizu
+     * @package directory
+     * @access public
+     * @name function changePassword()
+     * @param 
+     * @uses for user's change password 
+     * @return 
+     */
     public function changePassword() {
         if ($this->session->userdata('userLogin')) {
             $this->form_validation->set_error_delimiters('<font color="red">', '</font>');
@@ -207,6 +321,15 @@ class User extends CI_Controller {
         }
     }
 
+    /**
+     * @author Iffat Nizu
+     * @package directory
+     * @access public
+     * @name function checkOldPassword()
+     * @param string $str
+     * @uses for checking old password 
+     * @return boolean 
+     */
     public function checkOldPassword($str = '') {
         $status = $this->model_user->checkOldPassword($str);
         if ($status == 0) {
@@ -217,6 +340,15 @@ class User extends CI_Controller {
         }
     }
 
+    /**
+     * @author Iffat Nizu
+     * @package directory
+     * @access public
+     * @name function reportViolation()
+     * @param 
+     * @uses for report violation for event message 
+     * @return  
+     */
     public function reportViolation() {
         if ($this->session->userdata('userLogin')) {
             if (isset($_POST['submit'])) {
@@ -226,6 +358,15 @@ class User extends CI_Controller {
         }
     }
 
+    /**
+     * @author Iffat Nizu
+     * @package directory
+     * @access public
+     * @name function manageRating()
+     * @param 
+     * @uses for manage ratings 
+     * @return None 
+     */
     public function manageRating() {
         if ($this->session->userdata('userLogin')) {
             $data['title'] = 'Manage Rating';
@@ -238,17 +379,23 @@ class User extends CI_Controller {
             redirect(site_url(SiteConfig::CONTROLLER_USER . SiteConfig::METHOD_USER_LOGIN));
         }
     }
-    
-    public function updateVendorRatingReview()
-    {
+
+    /**
+     * @author Iffat Nizu
+     * @package directory
+     * @access public
+     * @name function updateVendorRatingReview()
+     * @param 
+     * @uses for updating vendor rating review 
+     * @return  
+     */
+    public function updateVendorRatingReview() {
         if ($this->session->userdata('userLogin')) {
-            if(isset($_POST['submit']))
-            {
+            if (isset($_POST['submit'])) {
                 echo $this->model_user->updateVendorRatingReview($this->session->userdata('userId'));
             }
-        }
-        else{
-           echo "Login First"; 
+        } else {
+            echo "Login First";
         }
     }
 

@@ -1,5 +1,10 @@
 var directory = {
 
+    /**
+     * Description
+     * @method sendMessageToUser
+     * @return 
+     */
     sendMessageToUser: function ()
     {
         var error = 0;
@@ -41,6 +46,12 @@ var directory = {
                     "eid": msgEid,
                     "submit": "1"
                 },
+                /**
+                 * Description
+                 * @method success
+                 * @param {} res
+                 * @return 
+                 */
                 success: function (res) {
                     if (res == '0')
                     {
@@ -58,11 +69,24 @@ var directory = {
             });
         }
     },
+    /**
+     * Description
+     * @method clearMessageArea
+     * @return 
+     */
     clearMessageArea: function ()
     {
         $("input[name=msgSubject]").val("");
         $("div[id=pageContent]").html("");
     },
+    /**
+     * Description
+     * @method bookmarkservice
+     * @param {} serviceid
+     * @param {} eventsid
+     * @param {} servicelistId
+     * @return 
+     */
     bookmarkservice: function (serviceid, eventsid, servicelistId)
     {
         $.ajax({
@@ -73,6 +97,12 @@ var directory = {
                 "servicelistId": servicelistId
             },
             url: base_url + bookmarkserviceUrl,
+            /**
+             * Description
+             * @method success
+             * @param {} res
+             * @return 
+             */
             success: function (res)
             {
                 if (res == '1')
@@ -83,6 +113,14 @@ var directory = {
             }
         });
     },
+    /**
+     * Description
+     * @method removebookmarkservice
+     * @param {} serviceid
+     * @param {} eventsid
+     * @param {} servicelistId
+     * @return 
+     */
     removebookmarkservice: function (serviceid, eventsid, servicelistId)
     {
         $.ajax({
@@ -94,9 +132,15 @@ var directory = {
                 "submit": "1"
             },
             url: base_url + removebookmarkserviceUrl,
+            /**
+             * Description
+             * @method success
+             * @param {} res
+             * @return 
+             */
             success: function (res)
             {
-                if (res == '1')
+                if (res === '1')
                 {
                     location.reload();
 
